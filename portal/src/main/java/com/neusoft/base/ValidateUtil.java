@@ -75,7 +75,7 @@ public class ValidateUtil {
 	}
 	
 	public static boolean isValid(Double winRate) {
-		// TODO Auto-generated method stub
+		// 
 		if(winRate!=null&&winRate>0)
 		{
 			return true;
