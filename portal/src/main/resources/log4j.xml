@@ -8,32 +8,11 @@
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%d{HH:mm:ss} [%c] - %m%n" />
 		</layout>
-	</appender>
+	</appender>	
 	
-	<logger name="org.springframework.samples">
+	<logger name="com.neusoft">
 		<level value="debug" />
 	</logger>
-	
-	<logger name="org.springframework.core">
-		<level value="error" />
-	</logger>
-	
-	<logger name="org.springframework.beans">
-		<level value="error" />
-	</logger>
-	
-	<logger name="org.springframework.context">
-		<level value="error" />
-	</logger>
-
-	<logger name="org.springframework.http">
-		<level value="error" />
-	</logger>
-
-	<logger name="org.springframework.web">
-		<level value="error" />
-	</logger>
-
 	<root>
 		<priority value="error" />
 		<appender-ref ref="console" />
