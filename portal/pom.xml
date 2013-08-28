@@ -83,8 +83,7 @@
      <dependency>
          	<groupId>mysql</groupId>
          	<artifactId>mysql-connector-java</artifactId>
-         	<version>5.1.25</version>
-         	<type>jar</type>         	
+         	<version>5.1.26</version>         	
          </dependency>
 	
 		<dependency>
@@ -286,23 +285,7 @@
 		</dependency>
         
 	</dependencies>
-	<repositories>	
-		<!-- For testing against latest Spring snapshots -->
-		<repository>
-			<id>org.springframework.maven.snapshot</id>
-			<name>Spring Maven Snapshot Repository</name>
-			<url>http://maven.springframework.org/snapshot</url>
-			<releases><enabled>false</enabled></releases>
-			<snapshots><enabled>true</enabled></snapshots>
-		</repository>
-		<!-- For developing against latest Spring milestones -->
-		<repository>
-			<id>org.springframework.maven.milestone</id>
-			<name>Spring Maven Milestone Repository</name>
-			<url>http://maven.springframework.org/milestone</url>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-	</repositories>
+	
 	<build>
 		<plugins>
 			<plugin>
@@ -374,11 +357,32 @@
 					<target>${java-version}</target>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0</version>
-			</plugin>	
+			<plugin>  
+	    <groupId>org.eclipse.jetty</groupId>  
+	    <artifactId>jetty-maven-plugin</artifactId>  
+	    <version>9.0.0.RC2</version>  
+	    <configuration>  
+	        <scanIntervalSeconds>0</scanIntervalSeconds>  
+	        <webAppConfig>  
+	            <contextPath>/portal</contextPath>  
+	        </webAppConfig>  
+	    </configuration>  
+	    
+	</plugin>  
+	<plugin>  
+                <groupId>org.zeroturnaround</groupId>  
+                <artifactId>javarebel-maven-plugin</artifactId>  
+                <executions>  
+                   <execution>  
+                        <id>generate-rebel-xml</id>  
+                        <phase>process-resources</phase>  
+                        <goals>  
+                            <goal>generate</goal>  
+	                        </goals>  
+	                    </execution>  
+	                </executions>  
+	            </plugin>
+		
 		</plugins>
 	</build>
 </project>
