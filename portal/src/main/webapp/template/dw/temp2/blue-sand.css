@@ -1,0 +1,29 @@
+/*Blue-Sand 这个夏天 2013.06.12*/
+body{background:#e1e1bd}
+.main .readmore{background:#45cbc4;color:#fff}
+.tags a{background:#45cbc4;color:#fff}
+#topbj-main{background:url(../images/bj-blue-sand.jpg)no-repeat right;margin:0 auto;width:990px;height:120px}
+#topbj-text{float:left;margin-top:30px}
+#topbj-title{font-size:22px}
+#topbj-title a:link,#topbj-title a:visited{color:#915833;}
+#topbj-subtitle{padding-top:9px;color:#915833;font-weight:normal;font-size:13px}
+#sidebar h3,#tabnav .selected,span.sticky,span.new{color:#45cbc4}
+
+.main .context img{border:solid 1px #e1e1bd}
+.main .article_head{border-bottom:1px #e1e1bd dashed}
+.main .article_info_bottom{border-top:1px #e1e1bd dashed}
+.commentlist .comment{border-top:1px #e1e1bd dashed}
+.pagination span,.pagination a{border:1px #e1e1bd solid;}
+.pagination .current{border:1px #e1e1bd solid;background:#45cbc4}
+.pagination a:hover{border:1px #e1e1bd solid;background:#45cbc4;}
+.thumbnail_box{border:1px solid #e1e1bd}
+.widget ul li{border-bottom:1px #e1e1bd dashed}
+.r_comment ul li img.avatar{border:1px solid #e1e1bd}
+.wallreaders img.avatar{border:1px solid #e1e1bd}
+.v_comment img{border:1px solid #e1e1bd}
+ol.commentlist li div.comment-author img.avatar{border:1px solid #e1e1bd}
+#searchform button:hover,#searchform #searchsubmit:hover{background:#e1e1bd;color:#999}
+#tab-content ul li{border-bottom:1px #e1e1bd dashed}
+#commentform textarea{border:1px solid #e1e1bd}
+#commentform input#submit,#commentform input#reset{border:1px solid #e1e1bd}
+#real-avatar .avatar{border:1px solid #e1e1bd}

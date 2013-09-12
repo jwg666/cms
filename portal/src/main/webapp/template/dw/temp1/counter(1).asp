@@ -1,0 +1,1 @@
+document.write("<A href=/count  target=_blank>：您是本站第 51057 位访客</a>&nbsp;");
