@@ -1,0 +1,1 @@
+document.write("<A href=http://www.zouzhiqiang.com/count  target=_blank>您是本站第 2055629 位访客</a>&nbsp;");

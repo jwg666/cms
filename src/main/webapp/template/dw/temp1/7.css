@@ -1,0 +1,26 @@
+@import url('b.css');
+.container #b { display: none; }
+#city-name .en, #city-btn {display: none; }
+.container.b #b { display: block; height: 24px; }
+.container.b #a { display: none; }
+/*城市，搜索*/
+body { width: 100%;}
+td { }
+.container #a { height: 26px; overflow: hidden; display:block; width:100%; line-height:26px; text-align: center; }
+#city { text-align: right;   display:inline-block; margin-right:3px; margin-left:1%;}
+#city-name { }
+
+
+/*预报*/
+#fc-s1 {display: inline-block; margin-right: 3px; }
+#fc-temp { font-family:'Arial';font-size: 12px; display:inline-block; margin-right:2%; line-height: 7px; *line-height:17px;}
+
+
+#fc-l1{letter-spacing:-1px;margin-right: 3px;}
+#fc-h1{letter-spacing:-1px; margin-left: 3px;}
+
+
+
+/*字幕*/
+#slider { height: 23px; padding: 0 5px; }
+#slider a { color: #6699FF; }
