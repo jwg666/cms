@@ -5,9 +5,14 @@
 
 package com.neusoft.model.space;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
 
 /**
  * database table: space_blog
@@ -19,6 +24,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  *
  
  */
+@Entity
+@Table(name="blog")
 public class Blog  implements java.io.Serializable{
 	private static final long serialVersionUID = 5454155825314635342L;
 	
@@ -36,6 +43,7 @@ public class Blog  implements java.io.Serializable{
     /**
      * id       db_column: id 
      */	
+	@Id
 	private java.lang.Long id;
     /**
      * title       db_column: title 
