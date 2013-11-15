@@ -12,6 +12,7 @@
 		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.1</org.slf4j-version>
+		<activiti.version>5.13</activiti.version>
 	</properties>
 	<dependencies>
 		<!-- Spring -->
@@ -78,7 +79,11 @@
 				<version>1.9.12</version>
 				<scope>compile</scope>
 			</dependency>
-            
+            <dependency>
+				<groupId>org.aspectj</groupId>
+				<artifactId>aspectjweaver</artifactId>
+				<version>1.6.11</version>
+			</dependency>
     <!-- mysql -->
      <dependency>
          	<groupId>mysql</groupId>
@@ -204,6 +209,51 @@
 			<version>2.0.1</version>
 		</dependency>
 			
+		
+		<!-- activiti -->
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-engine</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-spring</artifactId>
+				<version>${activiti.version}</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-explorer</artifactId>
+				<version>5.12</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>vaadin</artifactId>
+						<groupId>com.vaadin</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>dcharts-widget</artifactId>
+						<groupId>org.vaadin.addons</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>activiti-simple-workflow</artifactId>
+						<groupId>org.activiti</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.activiti</groupId>
+				<artifactId>activiti-modeler</artifactId>
+				<version>5.12</version>
+			</dependency>
+
+			<!-- 支持activiti缓存 -->
+			<dependency>
+				<groupId>org.infinispan</groupId>
+				<artifactId>infinispan-core</artifactId>
+				<version>5.1.7.Final</version>
+			</dependency>
+		
 		<!-- Test -->		
 		<dependency>
 			<groupId>junit</groupId>
@@ -328,4 +378,21 @@
   </pluginRepository>
  
  </pluginRepositories>
+ <repositories>
+		<repository>
+			<id>kafeitu</id>
+			<url>http://maven.kafeitu.me/nexus/content/groups/public</url>
+		</repository>
+	
+		<repository>
+			<id>Activiti</id>
+			<url>https://maven.alfresco.com/nexus/content/groups/public</url>
+		</repository>
+		<repository>
+			<id>Codehaus</id>
+			<url>http://repository.codehaus.org</url>
+		</repository>
+
+
+	</repositories>
 </project>
