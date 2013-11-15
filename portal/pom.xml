@@ -9,7 +9,7 @@
   
   <properties>
 		<java-version>1.7</java-version>
-		<org.springframework-version>4.0.0.BUILD-SNAPSHOT</org.springframework-version>
+		<org.springframework-version>3.2.5.RELEASE</org.springframework-version>
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.1</org.slf4j-version>
 	</properties>
@@ -152,56 +152,22 @@
 		</dependency>
 				
 		<!-- Servlet -->
-		<dependency>
-			<groupId>org.apache.tomcat</groupId>
-			<artifactId>tomcat-servlet-api</artifactId>
-			<version>7.0.30</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>jsp-api</artifactId>
-			<version>2.1</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>javax.servlet.jsp.jstl</groupId>
-			<artifactId>jstl-api</artifactId>
-			<version>1.2</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.web</groupId>
-			<artifactId>jstl-impl</artifactId>
-			<version>1.2</version>
-			<exclusions>
-				<exclusion>
-					<groupId>javax.servlet</groupId>
-					<artifactId>servlet-api</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
 
-		<!-- Jackson JSON Processor -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-mapper-asl</artifactId>
-			<version>1.8.1</version>
-		</dependency>
-
-		<!-- Rome Atom+RSS -->
+		 <dependency>  
+            <groupId>javax.servlet</groupId>  
+            <artifactId>javax.servlet-api</artifactId>  
+            <version>3.1-b09</version>  
+            <scope>provided</scope>  
+        </dependency> 
+        
+        <!-- Rome Atom+RSS -->
 		<dependency>
 			<groupId>net.java.dev.rome</groupId>
 			<artifactId>rome</artifactId>
 			<version>1.0.0</version>
 		</dependency>
-		
-		<!-- JSR 303 with Hibernate Validator -->
+        
+		<!-- hibernate -->
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
@@ -212,39 +178,14 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>4.1.0.Final</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-hibernate3</artifactId>
-			<version>2.0.8</version>
-		</dependency>
+            
         <dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
-			<version>4.2.3.Final</version>
+			<version>4.2.0.Final</version>
 		</dependency>
-         <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
-		</dependency>
-         <dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-tools</artifactId>
-			<version>4.0.0-CR1</version>
-		</dependency>
-		<!-- mongo -->
-        <dependency>
-	        <groupId>org.springframework.data</groupId>
-	        <artifactId>spring-data-mongodb</artifactId>
-	        <version>1.3.2.RELEASE</version>
-	    </dependency> 
-	    <dependency>
-			<groupId>org.mongodb</groupId>
-			<artifactId>mongo-java-driver</artifactId>
-			<version>2.10.1</version>
-		 </dependency>
-	             
-		<!-- Joda Time Library -->	
+                    
+	    <!-- Joda Time Library -->	
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
@@ -263,38 +204,14 @@
 			<version>2.0.1</version>
 		</dependency>
 			
-		<!-- Test -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>${org.springframework-version}</version>
-			<scope>test</scope>
-		</dependency>
+		<!-- Test -->		
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.8.2</version>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>xmlunit</groupId>
-			<artifactId>xmlunit</artifactId>
-			<version>1.2</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.jayway.jsonpath</groupId>
-			<artifactId>json-path</artifactId>
-			<version>0.8.1</version>
-			<scope>test</scope>
-		</dependency>
-  		<dependency>
-			<groupId>org.hamcrest</groupId>
-			<artifactId>hamcrest-library</artifactId>
-			<version>1.3</version>
-			<scope>test</scope>
-		</dependency>
-        
+		        
 	</dependencies>
 	
 	<build>
@@ -396,4 +313,19 @@
 		
 		</plugins>
 	</build>
+	 <pluginRepositories>
+  <pluginRepository>
+   <id>central</id>
+   <name>Maven Plugin Repository</name>
+   <url>http://repo1.maven.org/maven2</url>
+   <layout>default</layout>
+   <snapshots>
+    <enabled>false</enabled>
+   </snapshots>
+   <releases>
+    <updatePolicy>never</updatePolicy>
+   </releases>
+  </pluginRepository>
+ 
+ </pluginRepositories>
 </project>
