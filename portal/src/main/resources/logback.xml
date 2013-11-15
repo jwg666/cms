@@ -5,7 +5,9 @@
 			<Pattern>%d{HH:mm:ss.SSS} %-5level %logger{80} - %msg%n</Pattern>
 		</encoder>
 	</appender>
-	<logger name="com.neusoft"><level value="DEBUG" /></logger>
+	<logger name="com.neusoft">
+			<level value="DEBUG" />
+	</logger>
 	
 	<root>
 		<level value="ERROR" />
