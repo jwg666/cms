@@ -192,6 +192,8 @@
 			<ul>
 				<li>
 					<form id="readString" class="textForm" action="<c:url value="/messageconverters/string" />" method="post">
+						<input type="hidden" name="kk" id="kk" value="tttttt"/>
+						<input type="hidden" name="rr" id="rr" value="eeeeee"/>
 						<input id="readStringSubmit" type="submit" value="Read a String" />
 					</form>
 				</li>
@@ -203,6 +205,8 @@
 			<ul>
 				<li>
 					<form id="readForm" action="<c:url value="/messageconverters/form" />" method="post">
+						<input type="hidden" name="foo" id="foo" value="ooooo"/>
+						<input type="hidden" name="fruit" id="fruit" value="eeeeee"/>
 						<input id="readFormSubmit" type="submit" value="Read Form Data" />		
 					</form>
 				</li>
