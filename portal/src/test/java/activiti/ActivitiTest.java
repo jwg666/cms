@@ -22,7 +22,8 @@ public class ActivitiTest extends BaseTestCase{
 	@Test
 	public void testDeploy(){
 		try {
-			String filePath = "E:\\project\\java\\hrois\\hrois-biz\\src\\main\\resources\\activiti\\deployments\\all.bar";
+			logger.debug("--------------------------------------------------");
+			String filePath = "E:\\all.bar";
 			File processFile = new File(filePath);
 		    InputStream fileInputStream = new FileInputStream(processFile);
 		      Deployment deployment = null;
@@ -39,6 +40,7 @@ public class ActivitiTest extends BaseTestCase{
 			}
 		} catch (Exception e) {
 			logger.error("布署流程出现问题",e);
+			e.printStackTrace();
 		}
 		
 		
