@@ -149,14 +149,14 @@ public class ResourceFile  implements java.io.Serializable{
 	     */
 	public String getCreateTimeString() {
 		//return DateConvertUtils.format(getCreateTime(), FORMAT_CREATE_TIME);
-		return  DateUtils.format(DateUtils.format2,getCreateTime());
+		return  DateUtils.format(DateUtils.FORMAT3,getCreateTime());
 	}
 	 /**
      * createTime
      * @param createTime createTime
      */
 	public void setCreateTimeString(String createTime) {
-		setCreateTime(DateUtils.parse(createTime,DateUtils.format2,java.util.Date.class));
+		setCreateTime(DateUtils.parse(createTime,DateUtils.FORMAT3,java.util.Date.class));
 	}
 	
 	 /**

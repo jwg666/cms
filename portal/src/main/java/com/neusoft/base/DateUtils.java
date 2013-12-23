@@ -11,20 +11,19 @@ import java.util.Date;
  */
 public class DateUtils {
 	private StringBuffer buffer = new StringBuffer();
-	private static String ZERO = "0";
-	private static DateUtils date;
-	public static SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
-	public static SimpleDateFormat format1 = new SimpleDateFormat(
+	private static final String ZERO = "0";
+	public static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyyMMdd");
+	public static final SimpleDateFormat FORMAT1 = new SimpleDateFormat(
 			"yyyyMMdd HH:mm:ss");
-	public static SimpleDateFormat format2 = new SimpleDateFormat(
+	public static final SimpleDateFormat FORMAT2 = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm");
-	public static SimpleDateFormat format3 = new SimpleDateFormat(
+	public static final SimpleDateFormat FORMAT3 = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
-	public static SimpleDateFormat format4 = new SimpleDateFormat(
+	public static final SimpleDateFormat FORMAT4 = new SimpleDateFormat(
 			"yyyy/MM/dd HH:mm:ss");
-	public static SimpleDateFormat format5 = new SimpleDateFormat("yyyy-MM-dd");
-	public static SimpleDateFormat format6 = new SimpleDateFormat("MM-dd HH:mm");
-	public static SimpleDateFormat format7 = new SimpleDateFormat(
+	public static final SimpleDateFormat FORMAT5 = new SimpleDateFormat("yyyy-MM-dd");
+	public static final SimpleDateFormat FORMAT6 = new SimpleDateFormat("MM-dd HH:mm");
+	public static final SimpleDateFormat FORMAT7 = new SimpleDateFormat(
 			"yyyyMMddHHmmss");
 
 	public static Date parse(SimpleDateFormat format, String date) {
@@ -34,23 +33,32 @@ public class DateUtils {
 				d = format.parse(date);
 			}
 		} catch (ParseException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		return d;
 	}
 
 	public static String formatDuring(Long mss) {
-		if(mss==null)
+		if (mss == null){
 			return "";
+		}
 		long days = mss / (1000 * 60 * 60 * 24);
 		long hours = (mss % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60);
 		long minutes = (mss % (1000 * 60 * 60)) / (1000 * 60);
 		long seconds = (mss % (1000 * 60)) / 1000;
-		StringBuffer sb=new StringBuffer();
-		if(days>0) sb.append(days + " 天 ");
-		if(hours>0) sb.append(hours + " 小时 ");
-		if(minutes>0) sb.append(minutes + " 分 ");
-		if(seconds>0) sb.append(seconds + " 秒 ");
+		StringBuffer sb = new StringBuffer();
+		if (days > 0){
+			sb.append(days).append(" 天 ");
+		}
+		if (hours > 0){
+			sb.append(hours ).append( " 小时 ");
+		}
+		if (minutes > 0){
+			sb.append(minutes ).append( " 分 ");
+		}
+		if (seconds > 0){
+			sb.append(seconds ).append( " 秒 ");
+		}
 		return sb.toString();
 	}
 
@@ -113,9 +121,6 @@ public class DateUtils {
 		return eDay - bDay;
 	}
 
-	public static void main(String args[]) {
-		System.out.println(getSpecficDateStart(new Date(), 288));
-	}
 
 	/**
 	 * 鑾峰彇date骞村悗鐨刟mount骞寸殑绗竴澶╃殑寮�鏃堕棿
@@ -251,12 +256,12 @@ public class DateUtils {
 	 * @return
 	 */
 	public static Date getFinallyDate(Date date) {
-		synchronized (format) {
-			String temp = format.format(date);
+		synchronized (FORMAT) {
+			String temp = FORMAT.format(date);
 			temp += " 23:59:59";
 			try {
-				synchronized (format1) {
-					return format1.parse(temp);
+				synchronized (FORMAT1) {
+					return FORMAT1.parse(temp);
 				}
 			} catch (ParseException e) {
 				return null;
@@ -272,13 +277,13 @@ public class DateUtils {
 	 * @return
 	 */
 	public static Date getStartDate(Date date) {
-		synchronized (format) {
-			String temp = format.format(date);
+		synchronized (FORMAT) {
+			String temp = FORMAT.format(date);
 			temp += " 00:00:00";
-	
+
 			try {
-				synchronized (format) {
-					return format1.parse(temp);
+				synchronized (FORMAT) {
+					return FORMAT1.parse(temp);
 				}
 			} catch (Exception e) {
 				return null;
@@ -314,12 +319,6 @@ public class DateUtils {
 		return Calendar.getInstance();
 	}
 
-	public static DateUtils getDateInstance() {
-		if (date == null) {
-			date = new DateUtils();
-		}
-		return date;
-	}
 
 	public static Date dateAddSub(Date date, int n) {
 		Calendar calendar = Calendar.getInstance();
@@ -347,8 +346,9 @@ public class DateUtils {
 
 	public static <T extends java.util.Date> T parse(String dateString,
 			DateFormat dateFormat, Class<T> targetResultType) {
-		if (!ValidateUtil.isValid(dateString))
+		if (!ValidateUtil.isValid(dateString)){
 			return null;
+		}
 		try {
 			long time = dateFormat.parse(dateString).getTime();
 			java.util.Date t = targetResultType.getConstructor(long.class)
@@ -370,7 +370,7 @@ public class DateUtils {
 		Calendar c = Calendar.getInstance();
 		c.setTime(date);
 		c.add(c.DAY_OF_MONTH, day);
-		SimpleDateFormat formatter = new SimpleDateFormat("MM-dd");
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		beforeDay = formatter.format(c.getTime());
 		return beforeDay;
 	}
