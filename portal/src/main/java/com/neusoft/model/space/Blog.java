@@ -5,7 +5,9 @@
 
 package com.neusoft.model.space;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -25,7 +27,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  
  */
 @Entity
-@Table(name="blog")
+@Table(name="space_blog")
 public class Blog  implements java.io.Serializable{
 	private static final long serialVersionUID = 5454155825314635342L;
 	
@@ -43,7 +45,7 @@ public class Blog  implements java.io.Serializable{
     /**
      * id       db_column: id 
      */	
-	@Id
+	
 	private java.lang.Long id;
     /**
      * title       db_column: title 
@@ -95,6 +97,9 @@ public class Blog  implements java.io.Serializable{
      * id
      * @return id
      */
+	@Id  
+    @GeneratedValue
+    @Column(name = "id")
 	public java.lang.Long getId() {
 		return this.id;
 	}
@@ -109,6 +114,7 @@ public class Blog  implements java.io.Serializable{
      * title
      * @return title
      */
+	@Column(name = "title")
 	public java.lang.String getTitle() {
 		return this.title;
 	}
@@ -123,6 +129,7 @@ public class Blog  implements java.io.Serializable{
      * description
      * @return description
      */
+	@Column(name = "description")
 	public java.lang.String getDescription() {
 		return this.description;
 	}
@@ -137,6 +144,7 @@ public class Blog  implements java.io.Serializable{
      * contents
      * @return contents
      */
+	@Column(name = "contents")
 	public java.lang.String getContents() {
 		return this.contents;
 	}
@@ -151,6 +159,7 @@ public class Blog  implements java.io.Serializable{
      * ownerId
      * @return ownerId
      */
+	@Column(name = "owner_id")
 	public java.lang.Long getOwnerId() {
 		return this.ownerId;
 	}
@@ -160,6 +169,7 @@ public class Blog  implements java.io.Serializable{
      * createTime
      * @param createTime createTime
      */
+	
 	public void setCreateTime(java.util.Date createTime) {
 		this.createTime = createTime;
 	}
@@ -167,6 +177,7 @@ public class Blog  implements java.io.Serializable{
      * createTime
      * @return createTime
      */
+	@Column(name = "create_time")
 	public java.util.Date getCreateTime() {
 		return this.createTime;
 	}
@@ -181,6 +192,7 @@ public class Blog  implements java.io.Serializable{
      * status
      * @return status
      */
+	@Column(name = "status")
 	public java.lang.String getStatus() {
 		return this.status;
 	}
@@ -195,6 +207,7 @@ public class Blog  implements java.io.Serializable{
      * type
      * @return type
      */
+	@Column(name = "type")
 	public java.lang.Long getType() {
 		return this.type;
 	}

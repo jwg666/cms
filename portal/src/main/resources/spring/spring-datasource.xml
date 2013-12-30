@@ -18,31 +18,47 @@
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"  
         destroy-method="close">  
         <property name="driverClassName" value="com.mysql.jdbc.Driver" />  
-        <property name="url" value="jdbc:mysql://115.28.33.228:3306/space" />  
+        <property name="url" value="jdbc:mysql://115.28.33.228:3306/space?useUnicode=true&amp;characterEncoding=utf8" />  
         <property name="username" value="space" />  
         <property name="password" value="space" />  
     </bean>    
   <!--Hibernate Annotation SessionFatory-->
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"/>		
+		<property name="dataSource" ref="dataSource"/>			
 		<property name="hibernateProperties">
 			<props>
-				<!--常用数据库方言 MySQL5Dialect,SQLServerDialect,OracleDialect,SybaseDialect,DB2Dialect,HSQLDialect -->
 				<prop key="hibernate.hbm2ddl.auto">update</prop>  
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.query.substitutions">true 1, false 0</prop>
-				<prop key="hibernate.default_batch_fetch_size">4</prop>
+				<prop key="hibernate.default_batch_fetch_size">20</prop>
+				<!-- <prop key="hibernate.connection.useUnicode">true</prop>	
+		        <prop key="hibernate.connection.characterEncoding">utf8</prop> -->
+				<!-- <prop key="hibernate.cache.region.factory_class">
+					org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory  
+				</prop> --> 
+				<!-- <prop key="hibernate.current_session_context_class">
+						org.springframework.orm.hibernate4.SpringSessionContext 
+				</prop>  -->				
 			</props>
 		</property>
+		<!-- <property name="packagesToScan" value="com.neusoft.model.*"></property> -->
+		<property name="annotatedClasses">
+			<list>
+				<value>com.neusoft.model.portal.Wallpaper</value>
+				
+				<value>com.neusoft.model.space.Blog</value>
+			</list>
+		</property>
+		
 	</bean>
 	
 	<!-- Transaction Manager -->
-	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource" />
+	<bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 	<!-- 支持 @Transactional 标记-->
-	<tx:annotation-driven  /> 
+	<tx:annotation-driven  transaction-manager="transactionManager"/> 
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
@@ -62,9 +78,6 @@
 			expression="execution(* com.neusoft.service.impl.*ServiceImpl.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="interceptorPointCuts" />
 	</aop:config>
-      
-    <!-- 可通过注解控制事务 -->  
-    <tx:annotation-driven />  
-  
+<context:annotation-config /> 
     
 </beans>
