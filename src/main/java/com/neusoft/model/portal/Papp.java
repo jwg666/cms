@@ -15,9 +15,11 @@ import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import com.neusoft.base.DateUtils;
+
 @Entity
-@Table(name = "tb_app")
-public class App  implements java.io.Serializable{
+@Table(name = "tb_papp")
+public class Papp  implements java.io.Serializable{
 	private static final long serialVersionUID = 5454155825314635342L;
 	
 
@@ -43,10 +45,6 @@ public class App  implements java.io.Serializable{
      */	
 	private java.lang.String type;
     /**
-     * kindid       db_column: kindid 
-     */	
-	private java.lang.Integer kindid;
-    /**
      * 窗口宽度       db_column: width 
      */	
 	private java.lang.Integer width;
@@ -59,26 +57,6 @@ public class App  implements java.io.Serializable{
      */	
 	private java.lang.Boolean isresize;
     /**
-     * 窗口是否有评分和介绍按钮       db_column: issetbar 
-     */	
-	private java.lang.Boolean issetbar;
-    /**
-     * 是否为flash应用       db_column: isflash 
-     */	
-	private java.lang.Boolean isflash;
-    /**
-     * remark       db_column: remark 
-     */	
-	private java.lang.String remark;
-    /**
-     * 使用人数       db_column: usecount 
-     */	
-	private java.lang.Long usecount;
-    /**
-     * 评分       db_column: starnum 
-     */	
-	private Double starnum;
-    /**
      * dt       db_column: dt 
      */	
 	private java.util.Date dt;
@@ -87,19 +65,15 @@ public class App  implements java.io.Serializable{
      */	
 	private java.lang.Long indexid;
     /**
-     * dtString       db_column: dtString 
+     * memberId       db_column: member_id 
      */	
-	private java.lang.String dtString;
-    /**
-     * isopenmax       db_column: isopenmax 
-     */	
-	private java.lang.Integer isopenmax;
+	private java.lang.Long memberId;
 	//columns END
 
-	public App(){
+	public Papp(){
 	}
 
-	public App(
+	public Papp(
 		java.lang.Long tbid
 	){
 		this.tbid = tbid;
@@ -188,22 +162,6 @@ public class App  implements java.io.Serializable{
 		this.type = type;
 	}
 		 /**
-	     * kindid
-	     * @return kindid
-	     */
-		@Column(name="kindid")
-		public java.lang.Integer getKindid() {
-			return this.kindid;
-		}
-	
-	/**
-     * kindid
-     * @param kindid kindid
-     */
-	public void setKindid(java.lang.Integer kindid) {
-		this.kindid = kindid;
-	}
-		 /**
 	     * 窗口宽度
 	     * @return 窗口宽度
 	     */
@@ -251,85 +209,20 @@ public class App  implements java.io.Serializable{
 	public void setIsresize(java.lang.Boolean isresize) {
 		this.isresize = isresize;
 	}
-		 /**
-	     * 窗口是否有评分和介绍按钮
-	     * @return 窗口是否有评分和介绍按钮
+	    /**
+	     * dt
+	     * @return dt
 	     */
-		@Column(name="issetbar")
-		public java.lang.Boolean getIssetbar() {
-			return this.issetbar;
-		}
-	
-	/**
-     * 窗口是否有评分和介绍按钮
-     * @param issetbar 窗口是否有评分和介绍按钮
-     */
-	public void setIssetbar(java.lang.Boolean issetbar) {
-		this.issetbar = issetbar;
+	public String getDtString() {
+		//return DateConvertUtils.format(getDt(), FORMAT_DT);
+		return  DateUtils.format(DateUtils.FORMAT3,getDt());
 	}
-		 /**
-	     * 是否为flash应用
-	     * @return 是否为flash应用
-	     */
-		@Column(name="isflash")
-		public java.lang.Boolean getIsflash() {
-			return this.isflash;
-		}
-	
-	/**
-     * 是否为flash应用
-     * @param isflash 是否为flash应用
+	 /**
+     * dt
+     * @param dt dt
      */
-	public void setIsflash(java.lang.Boolean isflash) {
-		this.isflash = isflash;
-	}
-		 /**
-	     * remark
-	     * @return remark
-	     */
-		@Column(name="remark")
-		public java.lang.String getRemark() {
-			return this.remark;
-		}
-	
-	/**
-     * remark
-     * @param remark remark
-     */
-	public void setRemark(java.lang.String remark) {
-		this.remark = remark;
-	}
-		 /**
-	     * 使用人数
-	     * @return 使用人数
-	     */
-		@Column(name="usecount")
-		public java.lang.Long getUsecount() {
-			return this.usecount;
-		}
-	
-	/**
-     * 使用人数
-     * @param usecount 使用人数
-     */
-	public void setUsecount(java.lang.Long usecount) {
-		this.usecount = usecount;
-	}
-		 /**
-	     * 评分
-	     * @return 评分
-	     */
-		@Column(name="starnum")
-		public Double getStarnum() {
-			return this.starnum;
-		}
-	
-	/**
-     * 评分
-     * @param starnum 评分
-     */
-	public void setStarnum(Double starnum) {
-		this.starnum = starnum;
+	public void setDtString(String dt) {
+		setDt(DateUtils.parse(dt,DateUtils.FORMAT3,java.util.Date.class));
 	}
 	
 		 /**
@@ -365,36 +258,20 @@ public class App  implements java.io.Serializable{
 		this.indexid = indexid;
 	}
 		 /**
-	     * dtString
-	     * @return dtString
+	     * memberId
+	     * @return memberId
 	     */
-		@Column(name="dtString")
-		public java.lang.String getDtString() {
-			return this.dtString;
+		@Column(name="member_id")
+		public java.lang.Long getMemberId() {
+			return this.memberId;
 		}
 	
 	/**
-     * dtString
-     * @param dtString dtString
+     * memberId
+     * @param memberId memberId
      */
-	public void setDtString(java.lang.String dtString) {
-		this.dtString = dtString;
-	}
-		 /**
-	     * isopenmax
-	     * @return isopenmax
-	     */
-		@Column(name="isopenmax")
-		public java.lang.Integer getIsopenmax() {
-			return this.isopenmax;
-		}
-	
-	/**
-     * isopenmax
-     * @param isopenmax isopenmax
-     */
-	public void setIsopenmax(java.lang.Integer isopenmax) {
-		this.isopenmax = isopenmax;
+	public void setMemberId(java.lang.Long memberId) {
+		this.memberId = memberId;
 	}
 
 	public String toString() {
@@ -408,9 +285,9 @@ public class App  implements java.io.Serializable{
 	}
 	
 	public boolean equals(Object obj) {
-		if(obj instanceof App == false) return false;
+		if(obj instanceof Papp == false) return false;
 		if(this == obj) return true;
-		App other = (App)obj;
+		Papp other = (Papp)obj;
 		return new EqualsBuilder()
 			.append(getTbid(),other.getTbid())
 			.isEquals();

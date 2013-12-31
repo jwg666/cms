@@ -18,8 +18,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import com.neusoft.base.DateUtils;
 
 @Entity
-@Table(name = "tb_file")
-public class File  implements java.io.Serializable{
+@Table(name = "tb_folder")
+public class Folder  implements java.io.Serializable{
 	private static final long serialVersionUID = 5454155825314635342L;
 	
 
@@ -29,25 +29,17 @@ public class File  implements java.io.Serializable{
      */	
 	private java.lang.Long tbid;
     /**
-     * 图标地址       db_column: icon 
+     * icon       db_column: icon 
      */	
 	private java.lang.String icon;
     /**
-     * 文件名       db_column: name 
+     * name       db_column: name 
      */	
 	private java.lang.String name;
     /**
-     * 扩展名       db_column: ext 
+     * content       db_column: content 
      */	
-	private java.lang.String ext;
-    /**
-     * 文件大小       db_column: size 
-     */	
-	private java.lang.Integer size;
-    /**
-     * 文件存放地址       db_column: url 
-     */	
-	private java.lang.String url;
+	private java.lang.String content;
     /**
      * memberId       db_column: member_id 
      */	
@@ -58,10 +50,10 @@ public class File  implements java.io.Serializable{
 	private java.util.Date dt;
 	//columns END
 
-	public File(){
+	public Folder(){
 	}
 
-	public File(
+	public Folder(
 		java.lang.Long tbid
 	){
 		this.tbid = tbid;
@@ -86,8 +78,8 @@ public class File  implements java.io.Serializable{
 		this.tbid = tbid;
 	}
 		 /**
-	     * 图标地址
-	     * @return 图标地址
+	     * icon
+	     * @return icon
 	     */
 		@Column(name="icon")
 		public java.lang.String getIcon() {
@@ -95,15 +87,15 @@ public class File  implements java.io.Serializable{
 		}
 	
 	/**
-     * 图标地址
-     * @param icon 图标地址
+     * icon
+     * @param icon icon
      */
 	public void setIcon(java.lang.String icon) {
 		this.icon = icon;
 	}
 		 /**
-	     * 文件名
-	     * @return 文件名
+	     * name
+	     * @return name
 	     */
 		@Column(name="name")
 		public java.lang.String getName() {
@@ -111,59 +103,27 @@ public class File  implements java.io.Serializable{
 		}
 	
 	/**
-     * 文件名
-     * @param name 文件名
+     * name
+     * @param name name
      */
 	public void setName(java.lang.String name) {
 		this.name = name;
 	}
 		 /**
-	     * 扩展名
-	     * @return 扩展名
+	     * content
+	     * @return content
 	     */
-		@Column(name="ext")
-		public java.lang.String getExt() {
-			return this.ext;
+		@Column(name="content")
+		public java.lang.String getContent() {
+			return this.content;
 		}
 	
 	/**
-     * 扩展名
-     * @param ext 扩展名
+     * content
+     * @param content content
      */
-	public void setExt(java.lang.String ext) {
-		this.ext = ext;
-	}
-		 /**
-	     * 文件大小
-	     * @return 文件大小
-	     */
-		@Column(name="size")
-		public java.lang.Integer getSize() {
-			return this.size;
-		}
-	
-	/**
-     * 文件大小
-     * @param size 文件大小
-     */
-	public void setSize(java.lang.Integer size) {
-		this.size = size;
-	}
-		 /**
-	     * 文件存放地址
-	     * @return 文件存放地址
-	     */
-		@Column(name="url")
-		public java.lang.String getUrl() {
-			return this.url;
-		}
-	
-	/**
-     * 文件存放地址
-     * @param url 文件存放地址
-     */
-	public void setUrl(java.lang.String url) {
-		this.url = url;
+	public void setContent(java.lang.String content) {
+		this.content = content;
 	}
 		 /**
 	     * memberId
@@ -225,9 +185,9 @@ public class File  implements java.io.Serializable{
 	}
 	
 	public boolean equals(Object obj) {
-		if(obj instanceof File == false) return false;
+		if(obj instanceof Folder == false) return false;
 		if(this == obj) return true;
-		File other = (File)obj;
+		Folder other = (Folder)obj;
 		return new EqualsBuilder()
 			.append(getTbid(),other.getTbid())
 			.isEquals();
