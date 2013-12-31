@@ -1,7 +1,5 @@
 /*
- * Powered By [rapid-framework]
- * Web Site: http://www.rapid-framework.org.cn
- * Google Code: http://code.google.com/p/rapid-framework/
+ * Powered By neusoft 
  * Since 2008 - 2013
  */
 
@@ -13,31 +11,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import org.apache.commons.lang.builder.EqualsBuilder;
-import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.apache.commons.lang.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
-/**
- * database table: tb_wallpaper
- */
 @Entity
 @Table(name = "tb_wallpaper")
 public class Wallpaper  implements java.io.Serializable{
 	private static final long serialVersionUID = 5454155825314635342L;
 	
-	//alias
-	public static final String TABLE_ALIAS = "Wallpaper";
-	public static final String ALIAS_TBID = "tbid";
-	public static final String ALIAS_TITLE = "title";
-	public static final String ALIAS_URL = "url";
-	public static final String ALIAS_WIDTH = "width";
-	public static final String ALIAS_HEIGHT = "height";
+
 	
     /**
      * tbid       db_column: tbid 
      */	
-	
-	
 	private java.lang.Long tbid;
     /**
      * title       db_column: title 
@@ -66,42 +53,87 @@ public class Wallpaper  implements java.io.Serializable{
 		this.tbid = tbid;
 	}
 
-	public void setTbid(java.lang.Long value) {
-		this.tbid = value;
+		 /**
+	     * tbid
+	     * @return tbid
+	     */
+		@Id  
+	    @GeneratedValue
+		@Column(name="tbid")
+		public java.lang.Long getTbid() {
+			return this.tbid;
+		}
+	
+	/**
+     * tbid
+     * @param tbid tbid
+     */
+	public void setTbid(java.lang.Long tbid) {
+		this.tbid = tbid;
 	}
-	@Id  
-    @GeneratedValue
-    @Column(name = "tbid")
-	public java.lang.Long getTbid() {
-		return this.tbid;
+		 /**
+	     * title
+	     * @return title
+	     */
+		@Column(name="title")
+		public java.lang.String getTitle() {
+			return this.title;
+		}
+	
+	/**
+     * title
+     * @param title title
+     */
+	public void setTitle(java.lang.String title) {
+		this.title = title;
 	}
-	public void setTitle(java.lang.String value) {
-		this.title = value;
+		 /**
+	     * url
+	     * @return url
+	     */
+		@Column(name="url")
+		public java.lang.String getUrl() {
+			return this.url;
+		}
+	
+	/**
+     * url
+     * @param url url
+     */
+	public void setUrl(java.lang.String url) {
+		this.url = url;
 	}
-	@Column(name = "title")
-	public java.lang.String getTitle() {
-		return this.title;
+		 /**
+	     * width
+	     * @return width
+	     */
+		@Column(name="width")
+		public java.lang.Integer getWidth() {
+			return this.width;
+		}
+	
+	/**
+     * width
+     * @param width width
+     */
+	public void setWidth(java.lang.Integer width) {
+		this.width = width;
 	}
-	public void setUrl(java.lang.String value) {
-		this.url = value;
-	}
-	@Column(name = "url")
-	public java.lang.String getUrl() {
-		return this.url;
-	}
-	public void setWidth(java.lang.Integer value) {
-		this.width = value;
-	}
-	@Column(name = "width")
-	public java.lang.Integer getWidth() {
-		return this.width;
-	}
-	public void setHeight(java.lang.Integer value) {
-		this.height = value;
-	}
-	@Column(name = "height")
-	public java.lang.Integer getHeight() {
-		return this.height;
+		 /**
+	     * height
+	     * @return height
+	     */
+		@Column(name="height")
+		public java.lang.Integer getHeight() {
+			return this.height;
+		}
+	
+	/**
+     * height
+     * @param height height
+     */
+	public void setHeight(java.lang.Integer height) {
+		this.height = height;
 	}
 
 	public String toString() {
@@ -115,8 +147,8 @@ public class Wallpaper  implements java.io.Serializable{
 	}
 	
 	public boolean equals(Object obj) {
-		if(!(obj instanceof Wallpaper)){ return false;}
-		if(this == obj){return true;}
+		if(obj instanceof Wallpaper == false) return false;
+		if(this == obj) return true;
 		Wallpaper other = (Wallpaper)obj;
 		return new EqualsBuilder()
 			.append(getTbid(),other.getTbid())
