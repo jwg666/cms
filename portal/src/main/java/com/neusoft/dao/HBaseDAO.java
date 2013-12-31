@@ -13,42 +13,39 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Criterion;
-import org.hibernate.internal.CriteriaImpl.CriterionEntry;
-
-import com.neusoft.base.BaseQuery;
 
 
 public class HBaseDAO {
 	@Resource
 	private SessionFactory sessionFactory;
-	private Session session = sessionFactory.getCurrentSession();
+//	private Session session ;
 	
 	public Session getSession() {
-		return session;
+		return sessionFactory.getCurrentSession();
 	}
 
 	public void save(Object obj){		
-		session.save(obj);
+		getSession().save(obj);
 	}
 	
 	public void saveOrUpdate(Object obj){
-		session.saveOrUpdate(obj);
+		getSession().saveOrUpdate(obj);
 	}
 	
 	public void update(Object obj){
-		session.update(obj);
+		getSession().update(obj);
 	}
 	public List<?> findList(Class claz){
-		return session.createCriteria(claz).list();
+		return getSession().createCriteria(claz).list();
 	}
 	public List<?> findList(int begin, int pageSize,String hql){
-		Query query = session.createQuery(hql);
+		Query query = getSession().createQuery(hql);
 		query.setFirstResult(begin);
 		query.setMaxResults(pageSize);
 		return query.list();
 	}
 	public List<?> findList(int begin, int pageSize,String hql,Object[] params){
-		Query q = session.createQuery(hql);
+		Query q = getSession().createQuery(hql);
 		if(params.length>0){
 			for(int i=0;i<params.length;i++)
 			q.setParameter(i, params[i]);
@@ -59,7 +56,7 @@ public class HBaseDAO {
 		return q.list();
 	}
 	public List<?> findList(String hql,int begin,int pageSize,Map<String,Object> params){
-		Query q = session.createQuery(hql);
+		Query q = getSession().createQuery(hql);
 		if(params!=null&&params.size()>0){
 			Iterator it = params.entrySet().iterator();
 			while (it.hasNext()) {
@@ -73,17 +70,17 @@ public class HBaseDAO {
 		return q.list();
 	}
 	public List<?> findList(Class claz,Criterion criterion){
-		return session.createCriteria(claz).add(criterion).list();
+		return getSession().createCriteria(claz).add(criterion).list();
 	}
 	public List<?> findList(Class claz,Serializable params){
-		return (List<?>) session.load(claz, params);
+		return (List<?>) getSession().load(claz, params);
 	}
 	
 	public Criteria getCriteria(Class claz){
-		return session.createCriteria(claz);
+		return getSession().createCriteria(claz);
 	}
 	public void delete(Object object){
-		session.delete(object);
+		getSession().delete(object);
 	}
 	
 }
