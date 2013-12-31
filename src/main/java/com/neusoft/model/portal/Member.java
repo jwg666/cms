@@ -7,6 +7,12 @@
 
 package com.neusoft.model.portal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
@@ -17,6 +23,8 @@ import com.neusoft.base.DateUtils;
  * database table: tb_member
  * database table comments: Member
  */
+@Entity
+@Table(name="member")
 public class Member  implements java.io.Serializable{
 	private static final long serialVersionUID = 5454155825314635342L;
 	
@@ -166,67 +174,69 @@ public class Member  implements java.io.Serializable{
 	public void setTbid(java.lang.Long value) {
 		this.tbid = value;
 	}
-	
+	@Id
+	@GeneratedValue
+	@Column(name = "tbid")
 	public java.lang.Long getTbid() {
 		return this.tbid;
 	}
 	public void setType(java.lang.Boolean value) {
 		this.type = value;
 	}
-	
+	@Column(name = "type")
 	public java.lang.Boolean getType() {
 		return this.type;
 	}
 	public void setDock(java.lang.String value) {
 		this.dock = value;
 	}
-	
+	@Column(name = "dock")
 	public java.lang.String getDock() {
 		return this.dock;
 	}
 	public void setDesk1(java.lang.String value) {
 		this.desk1 = value;
 	}
-	
+	@Column(name = "desk1")
 	public java.lang.String getDesk1() {
 		return this.desk1;
 	}
 	public void setDesk2(java.lang.String value) {
 		this.desk2 = value;
 	}
-	
+	@Column(name = "desk2")
 	public java.lang.String getDesk2() {
 		return this.desk2;
 	}
 	public void setDesk3(java.lang.String value) {
 		this.desk3 = value;
 	}
-	
+	@Column(name = "desk3")
 	public java.lang.String getDesk3() {
 		return this.desk3;
 	}
 	public void setDesk4(java.lang.String value) {
 		this.desk4 = value;
 	}
-	
+	@Column(name = "desk4")
 	public java.lang.String getDesk4() {
 		return this.desk4;
 	}
 	public void setDesk5(java.lang.String value) {
 		this.desk5 = value;
 	}
-	
+	@Column(name = "desk5")
 	public java.lang.String getDesk5() {
 		return this.desk5;
 	}
 	public void setDesk6(java.lang.String value) {
 		this.desk6 = value;
 	}
-	
+	@Column(name = "desk6")
 	public java.lang.String getDesk6() {
 		return this.desk6;
 	}
-	
+	@Column(name = "deskname1")
 	public java.lang.String getDeskname1() {
 		return deskname1;
 	}
@@ -234,7 +244,7 @@ public class Member  implements java.io.Serializable{
 	public void setDeskname1(java.lang.String deskname1) {
 		this.deskname1 = deskname1;
 	}
-
+	@Column(name = "deskname2")
 	public java.lang.String getDeskname2() {
 		return deskname2;
 	}
@@ -242,7 +252,7 @@ public class Member  implements java.io.Serializable{
 	public void setDeskname2(java.lang.String deskname2) {
 		this.deskname2 = deskname2;
 	}
-
+	@Column(name = "deskname3")
 	public java.lang.String getDeskname3() {
 		return deskname3;
 	}
@@ -250,7 +260,7 @@ public class Member  implements java.io.Serializable{
 	public void setDeskname3(java.lang.String deskname3) {
 		this.deskname3 = deskname3;
 	}
-
+	@Column(name = "deskname4")
 	public java.lang.String getDeskname4() {
 		return deskname4;
 	}
@@ -258,7 +268,7 @@ public class Member  implements java.io.Serializable{
 	public void setDeskname4(java.lang.String deskname4) {
 		this.deskname4 = deskname4;
 	}
-
+	@Column(name = "deskname5")
 	public java.lang.String getDeskname5() {
 		return deskname5;
 	}
@@ -266,7 +276,7 @@ public class Member  implements java.io.Serializable{
 	public void setDeskname5(java.lang.String deskname5) {
 		this.deskname5 = deskname5;
 	}
-
+	@Column(name = "deskname6")
 	public java.lang.String getDeskname6() {
 		return deskname6;
 	}
@@ -278,49 +288,49 @@ public class Member  implements java.io.Serializable{
 	public void setAppxy(java.lang.String value) {
 		this.appxy = value;
 	}
-	
+	@Column(name = "appxy")	
 	public java.lang.String getAppxy() {
 		return this.appxy;
 	}
 	public void setDockpos(java.lang.String value) {
 		this.dockpos = value;
 	}
-	
+	@Column(name = "dockpos")
 	public java.lang.String getDockpos() {
 		return this.dockpos;
 	}
 	public void setWallpaperId(java.lang.Integer value) {
 		this.wallpaperId = value;
 	}
-	
+	@Column(name = "wallpaperId")
 	public java.lang.Integer getWallpaperId() {
 		return this.wallpaperId;
 	}
 	public void setWallpaperwebsite(java.lang.String value) {
 		this.wallpaperwebsite = value;
 	}
-	
+	@Column(name = "wallpaperwebsite")
 	public java.lang.String getWallpaperwebsite() {
 		return this.wallpaperwebsite;
 	}
 	public void setWallpaperstate(Integer value) {
 		this.wallpaperstate = value;
 	}
-	
+	@Column(name = "wallpaperstate")
 	public Integer getWallpaperstate() {
 		return this.wallpaperstate;
 	}
 	public void setWallpapertype(java.lang.String value) {
 		this.wallpapertype = value;
 	}
-	
+	@Column(name = "wallpapertype")
 	public java.lang.String getWallpapertype() {
 		return this.wallpapertype;
 	}
 	public void setSkin(java.lang.String value) {
 		this.skin = value;
 	}
-	
+	@Column(name = "skin")
 	public java.lang.String getSkin() {
 		return this.skin;
 	}
@@ -335,7 +345,7 @@ public class Member  implements java.io.Serializable{
 	public void setRegdt(java.util.Date value) {
 		this.regdt = value;
 	}
-	
+	@Column(name = "regdt")
 	public java.util.Date getRegdt() {
 		return this.regdt;
 	}
@@ -350,18 +360,18 @@ public class Member  implements java.io.Serializable{
 	public void setLastlogindt(java.util.Date value) {
 		this.lastlogindt = value;
 	}
-	
+	@Column(name = "lastlogindt")
 	public java.util.Date getLastlogindt() {
 		return this.lastlogindt;
 	}
 	public void setLastloginip(java.lang.String value) {
 		this.lastloginip = value;
 	}
-	
+	@Column(name = "lastloginip")
 	public java.lang.String getLastloginip() {
 		return this.lastloginip;
 	}
-
+	@Column(name = "desknum")
 	public java.lang.Integer getDesknum() {
 		return desknum;
 	}
