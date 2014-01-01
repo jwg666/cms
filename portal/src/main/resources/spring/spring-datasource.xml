@@ -42,14 +42,16 @@
 				</prop>  -->				
 			</props>
 		</property>
-		<!-- <property name="packagesToScan" value="com.neusoft.model.*"></property> -->
-		<property name="annotatedClasses">
+		<property name="packagesToScan" >
+			<value>com.neusoft.model.*</value>
+		</property>
+		<!-- property name="annotatedClasses">
 			<list>
 				<value>com.neusoft.model.portal.Wallpaper</value>
 				
 				<value>com.neusoft.model.space.Blog</value>
 			</list>
-		</property>
+		</property>-->
 		
 	</bean>
 	

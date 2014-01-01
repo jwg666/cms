@@ -1,24 +1,40 @@
 package com.neusoft.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.impl.util.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.neusoft.service.MemberService;
 @Controller
 @RequestMapping("/portal")
 public class IndexController {
 	private Logger logger = LoggerFactory.getLogger(getClass());
+	@Resource
+	private MemberService memberService;
 	@RequestMapping("/index")
 	public String index(){
 		logger.debug("portal index-----------------------");
 		return "portal/home";
 	}
-	@RequestMapping("/ajax")
-	public String ajax(HttpServletRequest request,HttpServletResponse response){
-		String ac = request.getParameter("ac");
+	@RequestMapping(value="/ajax")
+	@ResponseBody
+	public String ajax(@RequestParam String ac,HttpServletResponse response){
+//		response.setContentType("text/html;charset=UTF-8");
+//		response.setHeader("Pragma", "no-cache");  
+//		response.setHeader("Cache-Control", "no-cache");  
+//		response.setHeader("Expires", "0");  
+//		response.setHeader("Content-Type", "text/xml; charset=utf-8");
+//		response.setCharacterEncoding("utf-8");
+//		String ac = request.getParameter("ac");
 		//获得主题
 		if("getWallpaper".equals(ac)){return getWallpaper();}			
 		//更新主题
@@ -64,8 +80,10 @@ public class IndexController {
 	}
 	//获得主题
 	 public String getWallpaper(){
-		 
-		 return "";
+		 JSONObject json = new JSONObject();
+		 json.put("success", true);
+		 json.put("msg", "成功");
+		 return json.toString();
 	 }			
 	//更新主题
 	 public String setWallpaper(){return "";}			
