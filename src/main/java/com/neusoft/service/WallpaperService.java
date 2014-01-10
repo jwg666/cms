@@ -41,7 +41,7 @@ public interface WallpaperService{
 	 * @param obid
 	 * @return
 	 */
-	public Wallpaper getById(Long id);
+	public Wallpaper getById(Object id);
 	
 	/**
 	 * 获取数据

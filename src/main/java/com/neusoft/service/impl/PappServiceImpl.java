@@ -64,8 +64,8 @@ public class PappServiceImpl implements PappService{
 		
 	}
 	@Override
-	public Papp getById(Long id) {		
-		return (Papp) pappDAO.getById(Papp.class,id);
+	public Papp getById(Object id) {		
+		return (Papp) pappDAO.getById(Papp.class,id.toString());
 	}
 
 }

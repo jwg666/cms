@@ -41,7 +41,7 @@ public interface AppService{
 	 * @param obid
 	 * @return
 	 */
-	public App getById(Long id);
+	public App getById(Object id);
 	
 	/**
 	 * 获取数据

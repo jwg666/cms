@@ -64,8 +64,8 @@ public class PwallpaperServiceImpl implements PwallpaperService{
 		
 	}
 	@Override
-	public Pwallpaper getById(Long id) {		
-		return (Pwallpaper) pwallpaperDAO.getById(Pwallpaper.class,id);
+	public Pwallpaper getById(Object id) {		
+		return (Pwallpaper) pwallpaperDAO.getById(Pwallpaper.class,id.toString());
 	}
 
 }
