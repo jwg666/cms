@@ -41,7 +41,7 @@ public interface PwallpaperService{
 	 * @param obid
 	 * @return
 	 */
-	public Pwallpaper getById(Long id);
+	public Pwallpaper getById(Object id);
 	
 	/**
 	 * 获取数据

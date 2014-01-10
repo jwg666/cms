@@ -64,8 +64,8 @@ public class WallpaperServiceImpl implements WallpaperService{
 		
 	}
 	@Override
-	public Wallpaper getById(Long id) {		
-		return (Wallpaper) wallpaperDAO.getById(Wallpaper.class,id);
+	public Wallpaper getById(Object id) {		
+		return (Wallpaper) wallpaperDAO.getById(Wallpaper.class,id.toString());
 	}
 
 }

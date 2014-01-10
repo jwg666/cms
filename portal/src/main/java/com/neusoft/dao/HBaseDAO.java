@@ -108,4 +108,10 @@ public class HBaseDAO<T> {
 	public  Object getById(Class<T> claz,Long id){
 		return getSession().get(claz, id);
 	}
+	public  Object getById(Class<T> claz,Integer id){
+		return getSession().get(claz, id);
+	}
+	public  Object getById(Class<T> claz,String id){
+		return getSession().get(claz, id);
+	}
 }

@@ -41,7 +41,7 @@ public interface PappService{
 	 * @param obid
 	 * @return
 	 */
-	public Papp getById(Long id);
+	public Papp getById(Object id);
 	
 	/**
 	 * 获取数据
