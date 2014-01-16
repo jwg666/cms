@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="myProcess" name="My process" isExecutable="true">
+    <startEvent id="startevent1" name="Start"></startEvent>
+    <userTask id="userCaseAccess" name="法律部门接收申请" activiti:assignee="${legalDepartment}"></userTask>
+    <userTask id="asignLowOffice" name="分派律师事务所" activiti:assignee="${legalDepartment}"></userTask>
+    <userTask id="lowOfficeAccess" name="事务所受理案件" activiti:assignee="${lowOffice}"></userTask>
+    <userTask id="resultPublicity" name="受理结果公示" activiti:assignee="${lowOffice}"></userTask>
+    <userTask id="resultSign" name="网民签字回传" activiti:assignee="${legalDepartment}"></userTask>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow3" sourceRef="userCaseAccess" targetRef="asignLowOffice"></sequenceFlow>
+    <sequenceFlow id="flow4" sourceRef="asignLowOffice" targetRef="lowOfficeAccess"></sequenceFlow>
+    <sequenceFlow id="flow5" sourceRef="lowOfficeAccess" targetRef="resultPublicity"></sequenceFlow>
+    <sequenceFlow id="flow6" sourceRef="resultPublicity" targetRef="resultSign"></sequenceFlow>
+    <sequenceFlow id="flow7" sourceRef="resultSign" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow8" sourceRef="startevent1" targetRef="userCaseAccess"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_myProcess">
+    <bpmndi:BPMNPlane bpmnElement="myProcess" id="BPMNPlane_myProcess">
+      <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="20.0" y="26.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="125.0" y="114.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="userCaseAccess" id="BPMNShape_userCaseAccess">
+        <omgdc:Bounds height="55.0" width="105.0" x="90.0" y="16.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="asignLowOffice" id="BPMNShape_asignLowOffice">
+        <omgdc:Bounds height="55.0" width="105.0" x="240.0" y="16.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="lowOfficeAccess" id="BPMNShape_lowOfficeAccess">
+        <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="16.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="resultPublicity" id="BPMNShape_resultPublicity">
+        <omgdc:Bounds height="55.0" width="105.0" x="390.0" y="104.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="resultSign" id="BPMNShape_resultSign">
+        <omgdc:Bounds height="55.0" width="105.0" x="240.0" y="104.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="195.0" y="43.0"></omgdi:waypoint>
+        <omgdi:waypoint x="240.0" y="43.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="345.0" y="43.0"></omgdi:waypoint>
+        <omgdi:waypoint x="390.0" y="43.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow5" id="BPMNEdge_flow5">
+        <omgdi:waypoint x="442.0" y="71.0"></omgdi:waypoint>
+        <omgdi:waypoint x="442.0" y="104.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="390.0" y="131.0"></omgdi:waypoint>
+        <omgdi:waypoint x="345.0" y="131.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow7" id="BPMNEdge_flow7">
+        <omgdi:waypoint x="240.0" y="131.0"></omgdi:waypoint>
+        <omgdi:waypoint x="160.0" y="131.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="55.0" y="43.0"></omgdi:waypoint>
+        <omgdi:waypoint x="90.0" y="43.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
