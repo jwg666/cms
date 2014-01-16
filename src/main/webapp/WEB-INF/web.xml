@@ -28,8 +28,15 @@
         <filter-name>characterEncodingFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-	<!-- Creates the Spring Container shared by all Servlets and Filters -->
-	
+    
+	<filter>
+	    <filter-name>openSessionInViewFilter</filter-name>
+	    <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class>
+	</filter>
+	<filter-mapping>
+        <filter-name>openSessionInViewFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     
 	<!-- Processes application requests -->
 	<servlet>
