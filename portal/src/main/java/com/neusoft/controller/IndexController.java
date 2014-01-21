@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.activiti.engine.impl.util.json.JSONArray;
 import org.activiti.engine.impl.util.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -227,8 +228,37 @@ public class IndexController {
 	 }
 	//获得桌面图标
 	 public String getMyApp(){
+		 Member member = memberService.getById(LoginContextUtil.get().getUserId());
+		 String dock = member.getDock();
+		 JSONObject desktop = new JSONObject();
 		 
-		 
+		 if (dock!=null) {
+			 JSONObject dockJson = new JSONObject();
+			String[] docks = dock.split(",");
+			for (String v:docks) {
+				String[] r = v.split("_");
+				if("app".equals(r[0])){
+					
+				}
+				if("widget".equals(r[0])){
+					App app = appService.getById(r[1]);
+					dockJson.put("type", app.getType());
+					dockJson.put("id", app.getTbid());
+					dockJson.put("name", app.getName());
+					dockJson.put("icon", app.getIcon());
+				}
+				if("papp".equals(r[0])){
+					
+				}
+				if("pwidget".equals(r[0])){
+					
+				}
+				if("folder".equals(r[0])){
+					
+				}
+			}
+			
+		}
 		 return "";
 	 }
 	//根据id获取图标
