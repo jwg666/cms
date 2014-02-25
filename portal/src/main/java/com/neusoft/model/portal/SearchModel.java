@@ -1,8 +1,12 @@
 package com.neusoft.model.portal;
 
+import org.springframework.ui.ModelMap;
 
-public class SearchModel {
-	public String ac;
+
+public class SearchModel extends ModelMap{
+	
+	private static final long serialVersionUID = -8093757610982389488L;
+	private String ac;
 	//壁纸状态 系统默认：1 , 上传：2 外部url：3
 	private Integer wpstate;
 	//拉伸、平铺....
@@ -48,7 +52,13 @@ public class SearchModel {
 	private	Integer valIsflash;
 	//是否为系统应用 1：是
 	private Integer valIsapp=0;
-		
+	
+	private Integer id;
+	private String type;
+	
+	public SearchModel() {
+	}
+
 	public Integer getDesk() {
 		return desk;
 	}
@@ -263,6 +273,22 @@ public class SearchModel {
 
 	public void setAc(String ac) {
 		this.ac = ac;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 }

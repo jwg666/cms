@@ -1,5 +1,6 @@
 package com.neusoft.dao;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -64,7 +65,10 @@ public class HBaseDAO<T> {
 			Iterator<Entry<String,Object>> it = params.entrySet().iterator();
 			while (it.hasNext()) {
 				Entry<String,Object> e = it.next();
-				q.setParameter(e.getKey(), e.getValue());
+				if(null!=e.getValue()){
+					q.setParameter(e.getKey(), e.getValue());
+				}
+				
 			}
 		}
 		q.setFirstResult(begin);
@@ -85,7 +89,9 @@ public class HBaseDAO<T> {
 			Iterator<Entry<String,Object>> it = map.entrySet().iterator();
 			while (it.hasNext()) {
 				Entry<String,Object> e = it.next();
-				c.add(Restrictions.eq(e.getKey(), e.getValue()));
+				if(null!=e.getValue()){
+					c.add(Restrictions.eq(e.getKey(), e.getValue()));
+				}
 			}
 		}		
 		return c.list();
@@ -98,7 +104,9 @@ public class HBaseDAO<T> {
 			Iterator<Entry<String,Object>> it = map.entrySet().iterator();
 			while (it.hasNext()) {
 				Entry<String,Object> e = it.next();
-				c.add(Restrictions.eq(e.getKey(), e.getValue()));
+				if(null!=e.getValue()){
+					c.add(Restrictions.eq(e.getKey(), e.getValue()));
+				}
 			}
 		}
 		c.setFirstResult(begin);
@@ -113,5 +121,20 @@ public class HBaseDAO<T> {
 	}
 	public  Object getById(Class<T> claz,String id){
 		return getSession().get(claz, id);
+	}
+	@SuppressWarnings("unchecked")
+	public T get(Class<T> claz,Map<String,Object> param){
+		Criteria c = getSession().createCriteria(claz);
+		if(param!=null&&param.size()>0){
+			Iterator<Entry<String,Object>> it = param.entrySet().iterator();
+			while (it.hasNext()) {
+				Entry<String,Object> e = it.next();
+				if(null!=e.getValue()){
+					c.add(Restrictions.eq(e.getKey(), e.getValue()));
+				}				
+			}
+			return (T)c.uniqueResult();
+		}
+		return null;
 	}
 }

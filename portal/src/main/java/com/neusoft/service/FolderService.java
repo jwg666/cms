@@ -54,4 +54,6 @@ public interface FolderService{
 	 * @param folder 
 	 */	
 	public void saveOrUpdate(Folder folder);
+
+	public Folder get(Folder folder);
 }

@@ -489,7 +489,27 @@ public class Member  implements java.io.Serializable{
 	public void setLastloginip(java.lang.String lastloginip) {
 		this.lastloginip = lastloginip;
 	}
-
+	
+	public String[] gotDesks(){
+		String[] desks = new String[5];
+		desks[0] = this.desk1;
+		desks[1] = this.desk2;
+		desks[2] = this.desk3;
+		desks[3] = this.desk4;
+		desks[4] = this.desk5;
+		return desks;
+	}
+	public boolean importDesks(String[] desks){
+		if(desks!=null && desks.length == 5){
+			this.desk1 = desks[0]==null?"":desks[0].trim();
+			this.desk2 = desks[1]==null?"":desks[1].trim();
+			this.desk3 = desks[2]==null?"":desks[2].trim();
+			this.desk4 = desks[3]==null?"":desks[3].trim();
+			this.desk5 = desks[4]==null?"":desks[4].trim();
+		}
+		return false;
+	}
+	
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this);
 	}
@@ -508,5 +528,7 @@ public class Member  implements java.io.Serializable{
 			.append(getTbid(),other.getTbid())
 			.isEquals();
 	}
+	
+	
 }
 

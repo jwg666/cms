@@ -65,7 +65,7 @@ public class AppServiceImpl implements AppService{
 	}
 	@Override
 	public App getById(Object id) {		
-		return (App) appDAO.getById(App.class,id.toString());
+		return (App) appDAO.getById(App.class,new Long(id.toString()));
 	}
 
 }
