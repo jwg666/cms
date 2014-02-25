@@ -54,4 +54,6 @@ public interface PappService{
 	 * @param papp 
 	 */	
 	public void saveOrUpdate(Papp papp);
+
+	public Papp get(Papp papp);
 }

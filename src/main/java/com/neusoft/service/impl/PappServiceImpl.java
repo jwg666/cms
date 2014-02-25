@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.neusoft.dao.PappDAO;
 import com.neusoft.model.portal.Papp;
 import com.neusoft.service.PappService;
+import com.neusoft.util.ConverterUtil;
 
 /**
  * 
@@ -66,6 +67,10 @@ public class PappServiceImpl implements PappService{
 	@Override
 	public Papp getById(Object id) {		
 		return (Papp) pappDAO.getById(Papp.class,id.toString());
+	}
+	@Override
+	public Papp get(Papp papp) {		
+		return (Papp)pappDAO.get(Papp.class,ConverterUtil.toHashMap(papp));
 	}
 
 }

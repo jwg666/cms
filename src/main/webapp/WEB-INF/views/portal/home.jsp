@@ -126,7 +126,7 @@
 <script src="../resources/js/HoorayLibs/hooraylibs.js?v=2.0"></script>
 <script src="../resources/js/templates.js?v=2.0"></script>
 <script src="../resources/js/util.js?v=2.0"></script>
-<script src="../resources/js/core.min.js?v=2.0"></script>
+<script src="../resources/js/core.js?v=2.0"></script>
 <script src="../resources/js/artDialog4.1.6/jquery.artDialog.js?skin=default"></script>
 
 <script>

@@ -18,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.neusoft.dao.FolderDAO;
 import com.neusoft.model.portal.Folder;
 import com.neusoft.service.FolderService;
+import com.neusoft.util.ConverterUtil;
 
 /**
  * 
@@ -66,6 +67,10 @@ public class FolderServiceImpl implements FolderService{
 	@Override
 	public Folder getById(Long id) {		
 		return (Folder) folderDAO.getById(Folder.class,id);
+	}
+	@Override
+	public Folder get(Folder folder) {		
+		return (Folder)folderDAO.get(Folder.class, ConverterUtil.toHashMap(folder));
 	}
 
 }

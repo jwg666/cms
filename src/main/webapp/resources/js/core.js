@@ -36,9 +36,11 @@ HROS.app = (function(){
 		**  获得图标排列方式，x横向排列，y纵向排列
 		*/
 		getXY : function(func){
-			$.ajax({
+			$.ajax({				
 				type : 'POST',
 				url : ajaxUrl,
+				contentType:'application/json',
+				dataType:'json',
 				data : 'ac=getAppXY'
 			}).done(function(i){
 				HROS.CONFIG.appXY = i;
@@ -53,6 +55,8 @@ HROS.app = (function(){
 		updateXY : function(i, func){
 			$.ajax({
 				type : 'POST',
+				contentType:'application/json',
+				dataType:'json',
 				url : ajaxUrl,
 				data : 'ac=setAppXY&appxy=' + i
 			}).done(function(){
@@ -69,7 +73,11 @@ HROS.app = (function(){
 			//绘制图标表格
 			var grid = HROS.grid.getAppGrid(), dockGrid = HROS.grid.getDockAppGrid();
 			//获取json数组并循环输出每个图标
-			$.getJSON(ajaxUrl + '?ac=getMyApp', function(sc){
+			$.ajax({
+					contentType:'application/json',
+					dataType:'json',
+					url:ajaxUrl + '?ac=getMyApp', 
+					success:function(sc){
 				//加载应用码头图标
 				if(sc['dock'] != null){
 					var dock_append = '', temp = {};
@@ -115,7 +123,7 @@ HROS.app = (function(){
 					HROS.window.createTemp({
 						id : 'yysc',
 						title : '应用市场',
-						url : 'sysapp/appmarket/index.php',
+						url : '../appmarket/index.do',
 						width : 800,
 						height : 484,
 						isresize : false,
@@ -155,7 +163,7 @@ HROS.app = (function(){
 					}).show();
 					return false;
 				});
-			});
+			}});
 		},
 		/*
 		**  添加应用
@@ -163,6 +171,8 @@ HROS.app = (function(){
 		add : function(id, type, fun){
 			$.ajax({
 				type : 'POST',
+				contentType:'application/json',
+				dataType:'json',
 				url : ajaxUrl,
 				data : 'ac=addMyApp&id=' + id  + '&type=' + type + '&desk=' + HROS.CONFIG.desk,
 				success : function(){
@@ -178,6 +188,8 @@ HROS.app = (function(){
 		remove : function(id, type, fun){
 			$.ajax({
 				type : 'POST',
+				contentType:'application/json',
+				dataType:'json',
 				url : ajaxUrl,
 				data : 'ac=delMyApp&id=' + id + '&type=' + type,
 				success : function(){
@@ -251,6 +263,8 @@ HROS.app = (function(){
 							if(oldobj.hasClass('folder') == false){
 								$.ajax({
 									type : 'POST',
+									contentType:'application/json',
+									dataType:'json',
 									url : ajaxUrl,
 									data : 'ac=updateMyApp&movetype=dock-folder&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + folderId + '&desk=' + HROS.CONFIG.desk,
 									success : function(){
@@ -278,6 +292,8 @@ HROS.app = (function(){
 							if(icon2 != null && icon2 != oldobj.index()){
 								$.ajax({
 									type : 'POST',
+									contentType:'application/json',
+									dataType:'json',
 									url : ajaxUrl,
 									data : 'ac=updateMyApp&movetype=dock-dock&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + icon2 + '&desk=' + HROS.CONFIG.desk,
 									success : function(){
@@ -296,6 +312,8 @@ HROS.app = (function(){
 								if(icon != null){
 									$.ajax({
 										type : 'POST',
+										contentType:'application/json',
+										dataType:'json',
 										url : ajaxUrl,
 										data : 'ac=updateMyApp&movetype=dock-desk&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + (icon + 1) + '&desk=' + HROS.CONFIG.desk,
 										success : function(){
@@ -371,6 +389,8 @@ HROS.app = (function(){
 							if(oldobj.attr('type') != 'folder'){
 								$.ajax({
 									type : 'POST',
+									contentType:'application/json',
+									dataType:'json',
 									url : ajaxUrl,
 									data : 'ac=updateMyApp&movetype=desk-folder&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + (oldobj.index() - 2) + '&to=' + folderId + '&desk=' + HROS.CONFIG.desk,
 									success : function(){
@@ -399,6 +419,8 @@ HROS.app = (function(){
 								$.ajax({
 									type : 'POST',
 									url : ajaxUrl,
+									contentType:'application/json',
+									dataType:'json',
 									data : 'ac=updateMyApp&movetype=desk-dock&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + (oldobj.index() - 2) + '&to=' + (icon2 + 1) + '&desk=' + HROS.CONFIG.desk,
 									success : function(){
 										if(icon2 < iconIndex2){
@@ -423,6 +445,8 @@ HROS.app = (function(){
 								if(icon != null && icon != (oldobj.index() - 2)){
 									$.ajax({
 										type : 'POST',
+										contentType:'application/json',
+										dataType:'json',
 										url : ajaxUrl,
 										data : 'ac=updateMyApp&movetype=desk-desk&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + (oldobj.index() - 2) + '&to=' + icon + '&desk=' + HROS.CONFIG.desk,
 										success : function(){
@@ -494,6 +518,8 @@ HROS.app = (function(){
 							if(oldobj.parents('.folder-window').attr('realid') != folderId){
 								$.ajax({
 									type : 'POST',
+									contentType:'application/json',
+									dataType:'json',
 									url : ajaxUrl,
 									data : 'ac=updateMyApp&movetype=folder-folder&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.parents('.folder-window').attr('realid') + '&to=' + folderId + '&desk=' + HROS.CONFIG.desk,
 									success : function(){
@@ -521,6 +547,8 @@ HROS.app = (function(){
 							if(icon2 != null){
 								$.ajax({
 									type : 'POST',
+									contentType:'application/json',
+									dataType:'json',
 									url : ajaxUrl,
 									data : 'ac=updateMyApp&movetype=folder-dock&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.parents('.folder-window').attr('realid') + '&to=' + (icon2 + 1) + '&desk=' + HROS.CONFIG.desk,
 									success : function(){
@@ -555,6 +583,8 @@ HROS.app = (function(){
 								if(icon != null){
 									$.ajax({
 										type : 'POST',
+										contentType:'application/json',
+										dataType:'json',
 										url : ajaxUrl,
 										data : 'ac=updateMyApp&movetype=folder-desk&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.parents('.folder-window').attr('realid') + '&to=' + (icon + 1) + '&desk=' + HROS.CONFIG.desk,
 										success : function(){
@@ -858,6 +888,8 @@ HROS.appmanage = (function(){
 								$.ajax({
 									type : 'POST',
 									url : ajaxUrl,
+									contentType:'application/json',
+									dataType:'json',
 									data : 'ac=updateMyApp&movetype=dock-dock&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + icon2 + '&desk=' + HROS.CONFIG.desk,
 									success : function(){
 										if(icon2 < iconIndex2){
@@ -877,6 +909,8 @@ HROS.appmanage = (function(){
 								$.ajax({
 									type : 'POST',
 									url : ajaxUrl,
+									contentType:'application/json',
+									dataType:'json',
 									data : 'ac=updateMyApp&movetype=dock-desk&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + (icon + 1) + '&desk=' + (movedesk + 1),
 									success : function(){
 										if(icon < iconIndex){
@@ -950,6 +984,8 @@ HROS.appmanage = (function(){
 								$.ajax({
 									type : 'POST',
 									url : ajaxUrl,
+									contentType:'application/json',
+									dataType:'json',
 									data : 'ac=updateMyApp&movetype=desk-dock&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + (icon2 + 1) + '&desk=' + (parseInt(oldobj.attr('desk')) + 1),
 									success : function(){
 										if(icon2 < iconIndex2){
@@ -981,6 +1017,8 @@ HROS.appmanage = (function(){
 								if(movedesk == oldobj.attr('desk')){
 									$.ajax({
 										type : 'POST',
+										contentType:'application/json',
+										dataType:'json',
 										url : ajaxUrl,
 										data : 'ac=updateMyApp&movetype=desk-desk&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + icon + '&desk=' + (movedesk + 1),
 										success : function(){
@@ -1000,6 +1038,8 @@ HROS.appmanage = (function(){
 								}else{
 									$.ajax({
 										type : 'POST',
+										contentType:'application/json',
+										dataType:'json',
 										url : ajaxUrl,
 										data : 'ac=updateMyApp&movetype=desk-otherdesk&id=' + oldobj.attr('realid') + '&type=' + oldobj.attr('type') + '&from=' + oldobj.index() + '&to=' + icon + '&desk=' + (parseInt(oldobj.attr('desk')) + 1) + '&otherdesk=' + (movedesk + 1),
 										success : function(){
@@ -1091,7 +1131,7 @@ HROS.base = (function(){
 				HROS.window.createTemp({
 					id : 'ztsz',
 					title : '主题设置',
-					url : 'sysapp/wallpaper/index.php',
+					url : '../wallpaper/index.do',
 					width : 580,
 					height : 520,
 					isresize : false,
@@ -1127,10 +1167,12 @@ HROS.base = (function(){
 		logout : function(){
 			$.ajax({
 				type : 'POST',
+				contentType:'application/json',
+				dataType:'json',
 				url : ajaxUrl,
 				data : 'ac=logout',
 				success : function(){
-					location.href = 'login.php';
+					location.href = 'login.do';
 				}
 			});
 		},
@@ -1142,13 +1184,15 @@ HROS.base = (function(){
 		getSkin : function(){
 			$.ajax({
 				type : 'POST',
+				contentType:'application/json',
+				dataType:'json',
 				url : ajaxUrl,
 				data : 'ac=getSkin',
 				success : function(skin){
 					$('#window-skin').remove();
 					var link = document.createElement('link');
 					link.rel = 'stylesheet';
-					link.href = 'img/skins/' + skin + '.css?' + version;
+					link.href = '../resources/img/skins/' + skin + '.css?' + version;
 					link.id = 'window-skin';
 					$('body').append(link);
 				}
@@ -1255,6 +1299,8 @@ HROS.dock = (function(){
 		getPos : function(fun){
 			$.ajax({
 				type : 'POST',
+				contentType:'application/json',
+				dataType:'json',
 				url : ajaxUrl,
 				data : 'ac=getDockPos',
 				success : function(i){
@@ -1312,6 +1358,8 @@ HROS.dock = (function(){
 		updatePos : function(pos, fun){
 			$.ajax({
 				type : 'POST',
+				contentType:'application/json',
+				dataType:'json',
 				url : ajaxUrl,
 				data : 'ac=setDockPos&dock=' + pos,
 				success : function(){
@@ -1878,6 +1926,8 @@ HROS.popupMenu = (function(){
 				var desk = $(this).attr('desk');
 				$.ajax({
 					type : 'POST',
+					contentType:'application/json',
+					dataType:'json',
 					url : ajaxUrl,
 					data : 'ac=moveMyApp&id=' + obj.attr('realid') + '&type=' + obj.attr('type') + '&todesk=' + desk,
 					success : function(){
@@ -1948,6 +1998,8 @@ HROS.popupMenu = (function(){
 				var desk = $(this).attr('desk');
 				$.ajax({
 					type : 'POST',
+					contentType:'application/json',
+					dataType:'json',
 					url : ajaxUrl,
 					data : 'ac=moveMyApp&id=' + obj.attr('realid') + '&type=' + obj.attr('type') + '&todesk=' + desk,
 					success : function(){
@@ -2096,6 +2148,8 @@ HROS.popupMenu = (function(){
 						if($('#folderName').val() != ''){
 							$.ajax({
 								type : 'POST',
+								contentType:'application/json',
+								dataType:'json',
 								url : ajaxUrl,
 								data : 'ac=updateFolder&name=' + $('#folderName').val() + '&icon=' + $('.folderSelector img').attr('src') + '&id=' + obj.attr('realid'),
 								success : function(){
@@ -2206,12 +2260,14 @@ HROS.popupMenu = (function(){
 						padding : 0,
 						content : editFolderDialogTemp({
 							'name' : '新建文件夹',
-							'src' : 'img/ui/folder_default.png'
+							'src' : '../resources/img/ui/folder_default.png'
 						}),
 						ok : function(){
 							if($('#folderName').val() != ''){
 								$.ajax({
 									type : 'POST',
+									contentType:'application/json',
+									dataType:'json',
 									url : ajaxUrl,
 									data : 'ac=addFolder&name=' + $('#folderName').val() + '&icon=' + $('.folderSelector img').attr('src'),
 									success : function(folderid){
@@ -2262,6 +2318,8 @@ HROS.popupMenu = (function(){
 							if(name != '' && url != '' && width != '' && height != ''){
 								$.ajax({
 									type : 'POST',
+									contentType:'application/json',
+									dataType:'json',
 									url : ajaxUrl,
 									data : 'ac=addPapp&name=' + name + '&url=' + url + '&width=' + width + '&height=' + height + '&type=' + type + '&isresize=' + isresize,
 									success : function(pappid){
@@ -2298,7 +2356,7 @@ HROS.popupMenu = (function(){
 					HROS.window.createTemp({
 						id : 'ztsz',
 						title : '主题设置',
-						url : 'sysapp/wallpaper/index.php',
+						url : '../wallpaper/index',
 						width : 580,
 						height : 520,
 						isresize : false,
@@ -2310,7 +2368,7 @@ HROS.popupMenu = (function(){
 					HROS.window.createTemp({
 						id : 'zmsz',
 						title : '桌面设置',
-						url : 'sysapp/desksetting/index.php',
+						url : '../desksetting/index',
 						width : 750,
 						height : 450,
 						isresize : false,
@@ -2524,7 +2582,7 @@ HROS.uploadFile = (function(){
 														}
 													}
 												}, false);
-												xhr.open('post', 'ajax.php?ac=html5upload', true);
+												xhr.open('post', 'ajax.do?ac=html5upload', true);
 												xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 												xhr.send(fd);
 											}
@@ -2637,20 +2695,20 @@ HROS.wallpaper = (function(){
 			$.ajax({
 				type : 'POST',
 				url : ajaxUrl,
+				dataType:'json',
 				data : 'ac=getWallpaper',
-				success : function(msg){
-					var w = msg.split('<{|}>');
-					HROS.CONFIG.wallpaperState = w[0];
-					switch(w[0]){
+				success : function(msg){					
+					HROS.CONFIG.wallpaperState = msg.wallpaperstate;
+					switch(msg.wallpaperstate){
 						case '1':
 						case '2':
-							HROS.CONFIG.wallpaper = w[1];
-							HROS.CONFIG.wallpaperType = w[2];
-							HROS.CONFIG.wallpaperWidth = w[3];
-							HROS.CONFIG.wallpaperHeight = w[4];
+							HROS.CONFIG.wallpaper = msg.url;
+							HROS.CONFIG.wallpaperType = msg.wallpapertype;
+							HROS.CONFIG.wallpaperWidth = msg.width;
+							HROS.CONFIG.wallpaperHeight = msg.height;
 							break;
 						case '3':
-							HROS.CONFIG.wallpaper = w[1];
+							HROS.CONFIG.wallpaper = msg.url;
 							break;
 					}
 					if(typeof(fun) != 'undefined'){
@@ -2774,6 +2832,8 @@ HROS.wallpaper = (function(){
 			$.ajax({
 				type : 'POST',
 				url : ajaxUrl,
+				contentType:'application/json',
+				dataType:'json',
 				data : 'ac=setWallpaper&wpstate=' + wallpaperstate + '&wptype=' + wallpapertype + '&wp=' + wallpaper,
 				success : function(){
 					HROS.wallpaper.get(function(){
@@ -3096,7 +3156,7 @@ HROS.window = (function(){
 				nextDo({
 					type : 'app',
 					id : typeof(obj.id) == 'undefined' || obj.id == '' ? Date.parse(new Date()) : obj.id,
-					imgsrc : 'img/ui/default_icon.png',
+					imgsrc : '../resources/img/ui/default_icon.png',
 					title : obj.title,
 					url : obj.url,
 					width : obj.width,
@@ -3475,6 +3535,8 @@ HROS.window = (function(){
 				$.ajax({
 					type : 'POST',
 					url : ajaxUrl,
+					contentType:'application/json',
+					dataType:'json',
 					data : 'ac=getAppRemark&id=' + obj.data('info').realid,
 					success : function(msg){
 						help.content(msg);
@@ -3483,6 +3545,8 @@ HROS.window = (function(){
 			}).on('click', '.star', function(){
 				$.ajax({
 					type : 'POST',
+					contentType:'application/json',
+					dataType:'json',
 					url : ajaxUrl,
 					data : 'ac=getAppStar&id=' + obj.data('info').realid,
 					success : function(point){
@@ -3504,6 +3568,8 @@ HROS.window = (function(){
 					if(!isNaN(num) && /^[1-5]$/.test(num)){
 						$.ajax({
 							type : 'POST',
+							contentType:'application/json',
+							dataType:'json',
 							url : ajaxUrl,
 							data : 'ac=updateAppStar&id=' + id + '&starnum=' + num,
 							success : function(msg){
@@ -3691,7 +3757,7 @@ HROS.zoom = (function(){
 			**  使用SWFObject.js插入flash
 			**  http://www.cnblogs.com/wuxinxi007/archive/2009/10/27/1590709.html
 			*/
-			swfobject.embedSWF('js/zoom.swf?onchange=HROS.zoom.check', 'zoombox', '10', '10', '6.0.0', 'expressInstall.swf', '', {allowScriptAccess : 'always', wmode : 'transparent', scale : 'noScale'}, {id : 'accessory_zoom', name : 'zoom_detect'});
+			swfobject.embedSWF('../resources/js/zoom.swf?onchange=HROS.zoom.check', 'zoombox', '10', '10', '6.0.0', 'expressInstall.swf', '', {allowScriptAccess : 'always', wmode : 'transparent', scale : 'noScale'}, {id : 'accessory_zoom', name : 'zoom_detect'});
 		},
 		/*
 		**  为什么会有个参数o？其实我也不知道

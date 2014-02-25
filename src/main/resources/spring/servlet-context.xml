@@ -26,7 +26,8 @@
 		<bean class="com.neusoft.interceptor.LoginInterceptor">
 				<property name="excludedUrls">
 		        <list>
-		          <value>*login</value>
+		          <value>/login</value>
+		          <value>/resources</value>
 		        </list>
 		      </property>
 		</bean>

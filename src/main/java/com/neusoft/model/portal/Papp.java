@@ -5,6 +5,10 @@
 
 package com.neusoft.model.portal;
 
+import java.lang.reflect.Field;
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -292,5 +296,6 @@ public class Papp  implements java.io.Serializable{
 			.append(getTbid(),other.getTbid())
 			.isEquals();
 	}
+
 }
 
