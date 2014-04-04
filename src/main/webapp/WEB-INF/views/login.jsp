@@ -9,17 +9,17 @@
 <title>登录</title>
 <meta name="description" content="" />
 <meta name="keywords" content="" />
-<link rel="stylesheet" href="../resources/img/ui/index.css?v=120615">
+<link rel="stylesheet" href="../resources/img/ui/index.css">
 
-<script src="../resources/js/jquery-1.8.1.min.js"></script>
+<script src="../resources/js/jquery-1.8.3.min.js"></script>
 <script src="../resources/js/HoorayLibs/hooraylibs.js"></script>
-
+<script src="../resources/js/Validform_v5.3/Validform_v5.3_min.js"></script>
 <script>
-$(document).ready(function(){
-	setTimeout(function(){$('#value_1').val('').focus()}, 500);
-	//IE6升级提示
+$(function(){
+	//IE6,7升级提示
 	if($.browser.msie && $.browser.version < 8){
 		if($.browser.version < 7){
+			//虽然不支持IE6，但还是得修复PNG图片透明的问题             
 			DD_belatedPNG.fix('.update_browser .browser');
 		}
 		$('.login').html('<div class="update_browser">'+
@@ -35,74 +35,272 @@ $(document).ready(function(){
 			'<div class="bottomtitle">[&nbsp;<a href="http://www.theie6countdown.cn" target="_blank">对IE6说再见</a>&nbsp;]</div>'+
 		'</div>');
 	}
-
-	$(".input .log").bind("keyup",function(e){
-		if(e.keyCode == 13){$('.log .submit').click();}
+	$('#regiter_btn').click(function(){
+		$('#loginForm').hide();
+		$('#registerForm').show();
 	});
-
-
-	$('#value_1,#value_2').placeholder({labelMode:true,labelStyle:{left:8,top:3,fontSize:'14px'},labelAlpha:true,labelAcross:true});
-	$('.log .submit').click(function(){
-		if($('#value_1').val()!="" && $('#value_2').val()!=""){
-			$('.log .submit').hide();
-			$('.log .check').show();
-			$('.log .tip').text('').hide();
-			$.ajax({
-				type:'POST',
-				url:'login',
-				data:'username='+$('#value_1').val()+'&password='+$('#value_2').val(),
-				dataType :'json',
-				success:function(msg){
-					$('.log .submit').show();
-					$('.log .check').hide();
-					//alert(msg);
-					if(msg.success){
-						$('.loading').hide();
-						$('.loginmask').fadeIn(500,function(){
-							location.href = '../portal/index';
-						});
-					}else{
-						$('.log .tip').text('用户名或密码错误').show();
-					}
-				}
-			});
+	$('#backToLogin_btn').click(function(){
+		$('#registerForm').hide();
+		$('#loginForm').show();
+	});
+	var dropdownReset = function(){
+		$('#dropdown_btn').removeClass('checked');
+		$('#dropdown_list').fadeOut();
+	}
+	$(document).click(function(){
+		dropdownReset();
+	});
+	$('#dropdown_btn').click(function(){
+		$(this).addClass('checked');
+		$('#dropdown_list').fadeIn();
+		return false;
+	});
+	$('#rememberPswd').click(function(){
+		if($(this).attr('checked') !== 'checked'){
+			$('#autoLogin').attr('checked', false);
 		}
 	});
-	
-	$('.loading').fadeOut(500);
-	$('.login').show();
+	$('#autoLogin').click(function(){
+		if($(this).attr('checked') === 'checked'){
+			$('#rememberPswd').attr('checked', true);
+		}
+	});
+	//下拉列表选择用户
+	$('#dropdown_list').on('click', '.user', function(){
+		var id = $(this).attr('data-id');
+		var userlist = $.parseJSON($.cookie('userlist'));
+		$(userlist).each(function(){
+			if(this.id == id){
+				$('#avatar').attr('src', this.avatar);
+				$('#username').val(this.username);
+				$('#password').val(this.password);
+				$('#rememberPswd').prop('checked', this.rememberPswd ? true : false);
+				$('#autoLogin').prop('checked', this.autoLogin ? true : false);
+				return false;
+			}
+		});
+	});
+	//下拉列表删除用户
+	$('#dropdown_list').on('click', '.del', function(){
+		var id = $(this).parents('.user').attr('data-id');
+		var userlist = $.parseJSON($.cookie('userlist'));
+		$(userlist).each(function(i){
+			if(this.id == id){
+				userlist.splice(i, 1);
+				return false;
+			}
+		});
+		$.cookie('userlist', $.toJSON(userlist), {expires : 365});
+		if($.parseJSON($.cookie('userlist')) == ''){
+			$('#dropdown_btn').hide();
+			$('#dropdown_list').hide();
+		}
+		$(this).parents('.user').remove();
+		return false;
+	});
+	//表单登录初始化
+	var loginForm = $('#loginForm').Validform({
+		btnSubmit: '#submit_login_btn',
+		postonce: false,
+		showAllError: false,
+		tipSweep: true,
+		//msg：提示信息;
+		//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+		//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+		tiptype: function(msg, o){
+			if(!o.obj.is('form')){//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+				var B = o.obj.parent('.input_box').children('.tip');
+				var T = B.find('p');
+				if(o.type == 2){
+					B.hide();
+					T.text('');
+				}else{
+					B.show();
+					T.text(msg);
+				}
+			}
+		},
+		ajaxPost: true,
+		beforeSubmit: function(){
+			$('#submit_login_btn').addClass('disabled').prop('disabled', true);
+		},
+		callback: function(data){
+			$('#submit_login_btn').removeClass('disabled').prop('disabled', false);
+			if(data.status == 'y'){
+				location.href = 'index.php';
+			}else{
+				alert('登录失败，请检查用户名或密码是否正确');
+			}
+		}
+	});
+	//初始化登录用户列表
+	if($.parseJSON($.cookie('userlist')) != '' && $.parseJSON($.cookie('userlist')) != null){
+		$('#dropdown_btn').show();
+		var userTemp = template(
+			'<div class="user" data-id="<%=id%>">'+
+				'<img src="<%=avatar%>" class="avatar">'+
+				'<div class="info">'+
+					'<p><%=username%></p>'+
+					'<p class="realname">19900905</p>'+
+					'<a href="javascript:;" class="del">×</a>'+
+				'</div>'+
+			'</div>'
+		);
+		var userlist = $.parseJSON($.cookie('userlist')), dropdown = '';
+		$(userlist).each(function(){
+			dropdown += userTemp({
+				'id' : this.id,
+				'avatar' : this.avatar,
+				'username' : this.username
+			});
+		});
+		$('#dropdown_list').append(dropdown);
+		//将列表里第一个用户信息放入登录界面中
+		$('#avatar').attr('src', userlist[0].avatar);
+		$('#username').val(userlist[0].username);
+		$('#password').val(userlist[0].password);
+		$('#rememberPswd').prop('checked', userlist[0].rememberPswd ? true : false);
+		$('#autoLogin').prop('checked', userlist[0].autoLogin ? true : false);
+		//如果符合自动登录条件，则进行登录
+		if(userlist[0].autoLogin && $.cookie('autoLogin') == 1){
+			loginForm.submitForm();
+		}
+	}
+	//表单注册初始化
+	var registerForm = $('#registerForm').Validform({
+		btnSubmit: '#submit_register_btn',
+		postonce: true,
+		showAllError: false,
+		tipSweep: true,
+		//msg：提示信息;
+		//o:{obj:*,type:*,curform:*}, obj指向的是当前验证的表单元素（或表单对象），type指示提示的状态，值为1、2、3、4， 1：正在检测/提交数据，2：通过验证，3：验证失败，4：提示ignore状态, curform为当前form对象;
+		//cssctl:内置的提示信息样式控制函数，该函数需传入两个参数：显示提示信息的对象 和 当前提示的状态（既形参o中的type）;
+		tiptype: function(msg, o){
+			if(!o.obj.is('form')){//验证表单元素时o.obj为该表单元素，全部验证通过提交表单时o.obj为该表单对象;
+				var B = o.obj.parent('.input_box').children('.tip');
+				var T = B.find('p');
+				if(o.type == 2){
+					B.hide();
+					T.text('');
+				}else{
+					B.show();
+					T.text(msg);
+				}
+			}
+		},
+		ajaxPost: true,
+		beforeSubmit: function(){
+			$('#submit_register_btn').addClass('disabled').prop('disabled', true);
+		},
+		callback: function(data){
+			$('#submit_register_btn').removeClass('disabled').prop('disabled', false);
+			registerForm.resetStatus();
+			if(data.status == 'y'){
+				$('#registerForm').hide();
+				$('#loginForm').show();
+				$('#avatar').attr('src', 'img/ui/avatar_120.jpg');
+				$('#username').val(data.info);
+				$('#password').val('');
+				$('#rememberPswd, #autoLogin').prop('checked', false);
+				$('#reg_username, #reg_password, #reg_checkpassword').val('');
+			}else{
+				alert('注册失败');
+			}
+		}
+	});
+	$('.loading').fadeOut(750, function(){
+		$('.login').fadeIn(750);
+	});
 });
 </script>
 </head>
 
 <body>
-<!-- 登入界面 -->
 <div class="loginmask"></div>
 <div class="loading"></div>
 <div class="login">
-	<div class="logo"></div>
-	<div class="input">
-		<div class="log">
-			<div class="name">
-			<input type="text" id="value_1" placeholder="用户名" name="value_1" tabindex="1">
-			<!-- <a class="btn" href="javascript:;" style="position:absolute;right:-45px;color:#FFF;width:40px;height:30px;line-height:30px">
-			注册
-			</a> -->
-			</div>
-			<div class="pwd">
-				<input type="password" id="value_2" placeholder="密码" name="value_2" tabindex="2">
-				<input type="button" class="submit" tabindex="3">
-				<div class="check"></div>
-			</div>
-			<div class="tip">
-			</div>
+	<div class="loginbox">
+		<div class="top">
+			登录
 		</div>
-		<!-- <div class="reg disn">
-			<div class="name"><input type="text" id="reg_1" placeholder="用户名" name="reg_1" tabindex="1"><a class="btn" href="javascript:;" style="position:absolute;left:-45px;color:#FFF;width:40px;height:30px;line-height:30px">返回</a></div>
-			<div class="pwd"><input type="password" id="reg_2" placeholder="密码" name="reg_2" tabindex="2"></div>
-			<div class="pwd"><input type="password" id="reg_3" placeholder="确认密码" name="reg_3" tabindex="3"><input type="button" class="submit" tabindex="4"><div class="check"></div></div>
-			<div class="tip"></div>
-		</div> -->
+		<form action="../portal.do" method="post" id="loginForm">
+			<div class="middle"> 
+				<div class="left">
+					<img src="img/ui/avatar_120.jpg" id="avatar">
+				</div>
+				<div class="right">
+					<div class="input_box username">
+						<input type="input" name="username" id="username" autocomplete="off" placeholder="请输入用户名" tabindex="1" datatype="s6-18" nullmsg="请您输入用户名后再登录" errormsg="用户名长度为6-18个字符">
+						<a href="javascript:;" class="down" id="dropdown_btn"></a>
+						<div class="tip">
+							<div class="text">
+								<span class="arrow">◆</span>
+								<span class="arrow arrow1">◆</span>
+								<p></p>
+							</div>
+						</div> 
+						<button type="button" id="regiter_btn">注册账号</button>
+						<div class="dropdown" id="dropdown_list"></div>
+					</div>
+					<div class="input_box password">
+						<input type="password" name="password" id="password" placeholder="请输入密码" tabindex="2" datatype="*6-18" nullmsg="请您输入密码后再登录" errormsg="密码长度在6~18位之间">
+						<div class="tip">
+							<div class="text">
+								<span class="arrow">◆</span>
+								<span class="arrow arrow1">◆</span>
+								<p></p>
+							</div>
+						</div> 
+						<label><input type="checkbox" name="rememberPswd" id="rememberPswd">记住密码</label>
+						<label style="left:100px"><input type="checkbox" name="autoLogin" id="autoLogin">自动登录</label>
+					</div>
+				</div>
+			</div>
+			<div class="bottom">
+				<button type="submit" id="submit_login_btn" tabindex="3">登　　录</button>
+			</div>
+		</form>
+		<form action="ajax.php" method="post" id="registerForm" style="display:none">
+			<input type="hidden" name="ac" value="register">
+			<div class="middle"> 
+				<div class="right all">
+					<div class="input_box username">
+						<input type="input" name="reg_username" id="reg_username" autocomplete="off" placeholder="请输入用户名" tabindex="1" datatype="s6-18" ajaxurl="ajax.php?ac=checkUsername" nullmsg="请输入用户名" errormsg="用户名长度为6-18个字符">
+						<div class="tip">
+							<div class="text">
+								<span class="arrow">◆</span>
+								<span class="arrow arrow1">◆</span>
+								<p></p>
+							</div>
+						</div> 
+						<button type="button" id="backToLogin_btn">返回登录</button>
+					</div>
+					<div class="input_box password">
+						<input type="password" name="reg_password" id="reg_password" placeholder="请输入密码" tabindex="2" datatype="*6-18" nullmsg="请输入密码" errormsg="密码长度在6~18位之间">
+						<div class="tip">
+							<div class="text">
+								<span class="arrow">◆</span>
+								<span class="arrow arrow1">◆</span>
+								<p></p>
+							</div>
+						</div> 
+					</div>
+					<div class="input_box password">
+						<input type="password" name="reg_checkpassword" id="reg_checkpassword" placeholder="请确认密码" tabindex="3" datatype="*" recheck="reg_password" nullmsg="请再输入一次密码" errormsg="两次输入的密码不一致">
+						<div class="tip">
+							<div class="text">
+								<span class="arrow">◆</span>
+								<span class="arrow arrow1">◆</span>
+								<p></p>
+							</div>
+						</div> 
+					</div>
+				</div>
+			</div>
+			<div class="bottom" style="margin-top:100px">
+				<button type="submit" id="submit_register_btn" tabindex="4">注　　册</button>
+			</div>
+		</form>
 	</div>
 </div>
 
