@@ -50,7 +50,7 @@ public class LoginInterceptor implements HandlerInterceptor{
 					LoginContextUtil.put(loginContext);
 				}else{
 					//FIXME 没有登录信息
-					response.sendRedirect("/../../login/index");
+					response.sendRedirect("/portal/login/index");
 					
 				}//else
 			}//if intercept
