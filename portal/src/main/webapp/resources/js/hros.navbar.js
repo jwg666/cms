@@ -18,7 +18,7 @@ HROS.navbar = (function(){
 		**  获取头像
 		*/
 		getAvatar : function(){
-			$('#nav-bar .indicator-header-img').attr('src', 'img/ui/loading_24.gif');
+			$('#nav-bar .indicator-header-img').attr('src', '../ressources/img/ui/loading_24.gif');
 			$.ajax({
 				type : 'POST',
 				url : ajaxUrl,
@@ -34,7 +34,7 @@ HROS.navbar = (function(){
 			HROS.window.createTemp({
 				appid : 'txsz',
 				title : '头像设置',
-				url : 'sysapp/avatar/index.php',
+				url : '../sysapp/avatar',
 				width : 550,
 				height : 550
 			});

@@ -63,7 +63,7 @@ HROS.popupMenu = (function(){
 				$('.task-menu').hide();
 			});
 			$('.app-menu a[menu="edit"]').off('click').on('click', function(){
-				$.dialog.open('sysapp/dialog/app.php?id=' + obj.attr('appid'), {
+				$.dialog.open('../sysapp/dialog/app?id=' + obj.attr('appid'), {
 					id : 'editdialog',
 					title : '编辑应用“' + obj.children('span').text() + '”',
 					width : 570,
@@ -150,7 +150,7 @@ HROS.popupMenu = (function(){
 				$('.popup-menu').hide();
 			});
 			$('.papp-menu a[menu="edit"]').off('click').on('click', function(){
-				$.dialog.open('sysapp/dialog/papp.php?id=' + obj.attr('appid'), {
+				$.dialog.open('../sysapp/dialog/papp?id=' + obj.attr('appid'), {
 					id : 'editdialog',
 					title : '编辑私人应用“' + obj.children('span').text() + '”',
 					width : 600,
@@ -337,7 +337,7 @@ HROS.popupMenu = (function(){
 						padding : 0,
 						content : editFolderDialogTemp({
 							'name' : '新建文件夹',
-							'src' : 'img/ui/folder_default.png'
+							'src' : '../resources/img/ui/folder_default.png'
 						}),
 						ok : function(){
 							if($('#folderName').val() != ''){
@@ -370,7 +370,7 @@ HROS.popupMenu = (function(){
 					$('.popup-menu').hide();
 				});
 				$('.desk-menu a[menu="addpapp"]').on('click', function(){
-					$.dialog.open('sysapp/dialog/papp.php?desk=' + HROS.CONFIG.desk, {
+					$.dialog.open('../sysapp/dialog/papp?desk=' + HROS.CONFIG.desk, {
 						id : 'editdialog',
 						title : '新建私人应用',
 						width : 600,
@@ -386,7 +386,7 @@ HROS.popupMenu = (function(){
 					HROS.window.createTemp({
 						appid : 'hoorayos-ztsz',
 						title : '主题设置',
-						url : 'sysapp/wallpaper/index.php',
+						url : '../sysapp/wallpaper',
 						width : 580,
 						height : 520,
 						isflash : false
@@ -397,7 +397,7 @@ HROS.popupMenu = (function(){
 					HROS.window.createTemp({
 						appid : 'hoorayos-zmsz',
 						title : '桌面设置',
-						url : 'sysapp/desksetting/index.php',
+						url : '../sysapp/desksetting',
 						width : 750,
 						height : 450,
 						isflash : false

@@ -81,7 +81,7 @@ HROS.app = (function(){
 					HROS.window.createTemp({
 						appid : 'hoorayos-yysc',
 						title : '应用市场',
-						url : 'sysapp/appmarket/index.php',
+						url : '../sysapp/appmarket',
 						width : 800,
 						height : 484,
 						isflash : false
