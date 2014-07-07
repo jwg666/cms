@@ -63,7 +63,7 @@ HROS.base = (function(){
 				HROS.window.createTemp({
 					appid : 'hoorayos-zmsz',
 					title : '桌面设置',
-					url : 'sysapp/desksetting/index.php',
+					url : '../sysapp/desksetting',
 					width : 750,
 					height : 450,
 					isflash : false
@@ -75,7 +75,7 @@ HROS.base = (function(){
 				HROS.window.createTemp({
 					appid : 'hoorayos-ztsz',
 					title : '主题设置',
-					url : 'sysapp/wallpaper/index.php',
+					url : '../sysapp/wallpaper',
 					width : 580,
 					height : 520,
 					isflash : false
@@ -113,7 +113,7 @@ HROS.base = (function(){
 				url : ajaxUrl,
 				data : 'ac=logout',
 				success : function(){
-					location.href = 'login.php';
+					location.href = 'login';
 				}
 			});
 		},
@@ -183,7 +183,7 @@ HROS.base = (function(){
 					$('#window-skin').attr('id', 'window-skin-ready2remove');
 					var css = document.createElement('link');
 					css.rel = 'stylesheet';
-					css.href = 'img/skins/' + skin + '.css?' + version;
+					css.href = '../resources/img/skins/' + skin + '.css?' + version;
 					css.id = 'window-skin';
 					document.getElementsByTagName('head')[0].appendChild(css);
 					//新样式载入完毕后清空原样式

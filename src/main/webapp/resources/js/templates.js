@@ -162,13 +162,13 @@ var editFolderDialogTemp = template(
 		'<div class="folderInput"><input type="text" class="folderName" id="folderName" value="<%=name%>"></div>'+
 		'<div class="folderNameError">文件夹名称不能只包含空字符</div>'+
 		'<div class="fcDropdown">'+
-			'<a class="fcDropdown_item" title="默认"><img class="fcDropdown_img" src="img/ui/folder_default.png"></a>'+
-			'<a class="fcDropdown_item" title="文本"><img class="fcDropdown_img" src="img/ui/folder_doc.png"></a>'+
-			'<a class="fcDropdown_item" title="游戏"><img class="fcDropdown_img" src="img/ui/folder_game.png"></a>'+
-			'<a class="fcDropdown_item" title="生活"><img class="fcDropdown_img" src="img/ui/folder_life.png"></a>'+
-			'<a class="fcDropdown_item" title="音乐"><img class="fcDropdown_img" src="img/ui/folder_music.png"></a>'+
-			'<a class="fcDropdown_item" title="工具"><img class="fcDropdown_img" src="img/ui/folder_tool.png"></a>'+
-			'<a class="fcDropdown_item" title="视频"><img class="fcDropdown_img" src="img/ui/folder_video.png"></a>'+
+			'<a class="fcDropdown_item" title="默认"><img class="fcDropdown_img" src="../resources/img/ui/folder_default.png"></a>'+
+			'<a class="fcDropdown_item" title="文本"><img class="fcDropdown_img" src="../resources/img/ui/folder_doc.png"></a>'+
+			'<a class="fcDropdown_item" title="游戏"><img class="fcDropdown_img" src="../resources/img/ui/folder_game.png"></a>'+
+			'<a class="fcDropdown_item" title="生活"><img class="fcDropdown_img" src="../resources/img/ui/folder_life.png"></a>'+
+			'<a class="fcDropdown_item" title="音乐"><img class="fcDropdown_img" src="../resources/img/ui/folder_music.png"></a>'+
+			'<a class="fcDropdown_item" title="工具"><img class="fcDropdown_img" src="../resources/img/ui/folder_tool.png"></a>'+
+			'<a class="fcDropdown_item" title="视频"><img class="fcDropdown_img" src="../resources/img/ui/folder_video.png"></a>'+
 		'</div>'+
 	'</div>'
 );
@@ -214,7 +214,7 @@ var helpTemp = template(
 		'<a href="javascript:;" class="close" title="关闭新手帮助">×</a>'+
 		'<div id="step1" class="step" step="1" style="position:relative;left:50%;top:50%;margin-left:-160px;margin-top:-60px;width:280px;height:100px">'+
 			'<p style="text-align:center">'+
-				'<span class="h2">欢迎使用HoorayOS</span>'+
+				'<span class="h2">欢迎使用CMS</span>'+
 				'<br>下面我会简单介绍下如何使用，以便你快速上手<br>'+
 				'<a href="javascript:;" class="next">下一步</a>'+
 			'</p>'+

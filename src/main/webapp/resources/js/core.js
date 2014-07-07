@@ -6,7 +6,7 @@
 */
 
 var version   = '2.1.1';        //版本号
-var ajaxUrl   = 'ajax.php';     //所有ajax操作指向页面
+var ajaxUrl   = 'ajax';     //所有ajax操作指向页面
 var zoomlevel = 1;
 var TEMP      = {};
 var HROS      = {};

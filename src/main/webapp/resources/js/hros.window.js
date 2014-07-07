@@ -86,7 +86,7 @@ HROS.window = (function(){
 				nextDo({
 					type : type,
 					appid : appid,
-					imgsrc : 'img/ui/default_icon.png',
+					imgsrc : '../resources/img/ui/default_icon.png',
 					title : obj.title,
 					url : obj.url,
 					width : obj.width,
@@ -467,7 +467,7 @@ HROS.window = (function(){
 					HROS.window.createTemp({
 						appid : 'hoorayos-yysc',
 						title : '应用市场',
-						url : 'sysapp/appmarket/index.php?id=' + obj.attr('realappid'),
+						url : '../sysapp/appmarket?id=' + obj.attr('realappid'),
 						width : 800,
 						height : 484,
 						isflash : false,

@@ -55,7 +55,7 @@ HROS.uploadFile = (function(){
 														}
 													}
 												}, false);
-												xhr.open('post', 'ajax.php?ac=html5upload', true);
+												xhr.open('post', 'ajax?ac=html5upload', true);
 												xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
 												xhr.send(fd);
 											}
