@@ -26,7 +26,7 @@
         swfobject.createCSS("#flashContent", "display:block;text-align:left;");
     </script>
     <script src="tts.js" type="application/javascript"></script>
-    <script src="../js/jquery-1.8.3.min.js" type="application/javascript"></script>
+    <script src="../../js/jquery-1.8.3.min.js" type="application/javascript"></script>
     <title>读屏插件演示</title>
 </head>
 <body>

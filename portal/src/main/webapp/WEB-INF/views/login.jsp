@@ -46,7 +46,7 @@ $(function(){
 	var dropdownReset = function(){
 		$('#dropdown_btn').removeClass('checked');
 		$('#dropdown_list').fadeOut();
-	}
+	};
 	$(document).click(function(){
 		dropdownReset();
 	});
@@ -127,45 +127,14 @@ $(function(){
 		callback: function(data){
 			$('#submit_login_btn').removeClass('disabled').prop('disabled', false);
 			if(data.status == 'y'){
-				location.href = 'index.php';
+				location.href = '../portal/index';
 			}else{
 				alert('登录失败，请检查用户名或密码是否正确');
 			}
 		}
 	});
 	//初始化登录用户列表
-	if($.parseJSON($.cookie('userlist')) != '' && $.parseJSON($.cookie('userlist')) != null){
-		$('#dropdown_btn').show();
-		var userTemp = template(
-			'<div class="user" data-id="<%=id%>">'+
-				'<img src="<%=avatar%>" class="avatar">'+
-				'<div class="info">'+
-					'<p><%=username%></p>'+
-					'<p class="realname">19900905</p>'+
-					'<a href="javascript:;" class="del">×</a>'+
-				'</div>'+
-			'</div>'
-		);
-		var userlist = $.parseJSON($.cookie('userlist')), dropdown = '';
-		$(userlist).each(function(){
-			dropdown += userTemp({
-				'id' : this.id,
-				'avatar' : this.avatar,
-				'username' : this.username
-			});
-		});
-		$('#dropdown_list').append(dropdown);
-		//将列表里第一个用户信息放入登录界面中
-		$('#avatar').attr('src', userlist[0].avatar);
-		$('#username').val(userlist[0].username);
-		$('#password').val(userlist[0].password);
-		$('#rememberPswd').prop('checked', userlist[0].rememberPswd ? true : false);
-		$('#autoLogin').prop('checked', userlist[0].autoLogin ? true : false);
-		//如果符合自动登录条件，则进行登录
-		if(userlist[0].autoLogin && $.cookie('autoLogin') == 1){
-			loginForm.submitForm();
-		}
-	}
+	
 	//表单注册初始化
 	var registerForm = $('#registerForm').Validform({
 		btnSubmit: '#submit_register_btn',
@@ -198,7 +167,7 @@ $(function(){
 			if(data.status == 'y'){
 				$('#registerForm').hide();
 				$('#loginForm').show();
-				$('#avatar').attr('src', 'img/ui/avatar_120.jpg');
+				$('#avatar').attr('src', '../resources/img/ui/avatar_120.jpg');
 				$('#username').val(data.info);
 				$('#password').val('');
 				$('#rememberPswd, #autoLogin').prop('checked', false);
@@ -223,10 +192,10 @@ $(function(){
 		<div class="top">
 			登录
 		</div>
-		<form action="../portal.do" method="post" id="loginForm">
+		<form action="login" method="post" id="loginForm">
 			<div class="middle"> 
 				<div class="left">
-					<img src="img/ui/avatar_120.jpg" id="avatar">
+					<img src="../resources/img/ui/avatar_120.jpg" id="avatar">
 				</div>
 				<div class="right">
 					<div class="input_box username">
@@ -265,7 +234,7 @@ $(function(){
 			<div class="middle"> 
 				<div class="right all">
 					<div class="input_box username">
-						<input type="input" name="reg_username" id="reg_username" autocomplete="off" placeholder="请输入用户名" tabindex="1" datatype="s6-18" ajaxurl="ajax.php?ac=checkUsername" nullmsg="请输入用户名" errormsg="用户名长度为6-18个字符">
+						<input type="input" name="reg_username" id="reg_username" autocomplete="off" placeholder="请输入用户名" tabindex="1" datatype="s6-18" ajaxurl="ajax?ac=checkUsername" nullmsg="请输入用户名" errormsg="用户名长度为6-18个字符">
 						<div class="tip">
 							<div class="text">
 								<span class="arrow">◆</span>
