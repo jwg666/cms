@@ -5,7 +5,18 @@ $(function () {
         //alert(str);
         readText(str);
     });
-
+    $('p').mouseenter(function () {
+        // alert("0000");
+        var str = $(this).text();
+        //alert(str);
+        readText(str);
+    });
+    $('img').mouseenter(function () {
+        // alert("0000");
+        var str = "图片"+ $(this).attr("alt");
+        //alert(str);
+        readText(str);
+    });
 });
 function readText(str) {
     //alert(id);
